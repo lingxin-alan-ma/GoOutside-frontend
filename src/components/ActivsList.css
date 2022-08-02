@@ -1,0 +1,39 @@
+.frontPageImgs {
+  width: 100%;
+  object-fit: cover;
+}
+
+.activRow {
+  margin-top: 15px;
+}
+
+.card {
+  margin-top: 15px;
+}
+
+.activsListCard {
+  width: 18rem;
+}
+
+div.poster {
+  margin: 10px;
+}
+
+.smallPoster {
+  user-select: none;
+}
+
+.star {
+  width: 32.5em;
+  height: 4em;
+  position: absolute;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.starFill {
+  fill: yellow;
+}
+
+.starEmpty {
+  fill: white;
+}

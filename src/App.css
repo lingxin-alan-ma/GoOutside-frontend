@@ -1,5 +1,5 @@
 .App {
-  background-color: lavender;
+  background-color: darkgray;
   min-height: 100vh;
   padding-bottom: 100px;
 }
@@ -18,6 +18,21 @@ body {
   padding: 0;
 }
 
+.navbar-brand.brand span {
+  color: greenyellow;
+  padding: 0;
+}
+
+/* .navbar-nav {
+  margin: auto
+} */
+
+.navbar-nav ul {
+  display: flex;
+  gap: 2rem;
+  margin: auto;
+}
+
 .navbar-nav.nav-link.link {
   color: white!important;
 }
@@ -34,7 +49,7 @@ body {
   margin-top: 20px;
 }
 
-img.moviesLogo {
-  height: 50px;
+img.goOutsideLogo {
+  height: 4rem;
   padding-right: 5px;
 }
