@@ -29,6 +29,9 @@ class ActivDataService {
   deleteReview(data) {
     return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/review`, {data});
   }
+  creatActiv(data) {
+    return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, data);
+  }
 }
 
 export default new ActivDataService();
