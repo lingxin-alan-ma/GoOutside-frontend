@@ -23,19 +23,25 @@ body {
   padding: 0;
 }
 
-/* .navbar-nav {
-  margin: auto
-} */
-
 .navbar-nav ul {
   display: flex;
   gap: 2rem;
   margin: auto;
 }
 
+.ml-auto:hover {
+  letter-spacing: .05rem;
+  color: lightgreen!important;
+}
+
 .navbar-nav.nav-link.link {
   color: white!important;
 }
+
+/* .navbar-nav.nav-link.link:hover {
+  letter-spacing: .05rem;
+  color: lightgreen;
+} */
 
 .navItem {
   color: white!important;

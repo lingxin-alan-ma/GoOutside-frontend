@@ -7,7 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { BsStar, BsStarFill } from "react-icons/bs";
+// import { BsStar, BsStarFill } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import "./ActivsList.css";
 
@@ -19,7 +20,7 @@ const ActivsList = ({
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
-  const [searchTitle, setSearchTitle] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [searchRating, setSearchRating] = useState("");
   // const [ratings, setRatings] = useState(["All Ratings"]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -59,10 +60,10 @@ const ActivsList = ({
       });
   }, [currentPage]);
 
-  const findByTitle = useCallback(() => {
-    setCurrentSearchMode("findByTitle");
-    find(searchTitle, "title");
-  }, [find, searchTitle]);
+  const findByName = useCallback(() => {
+    setCurrentSearchMode("findByName");
+    find(searchName, "title");
+  }, [find, searchName]);
 
   const findByRating = useCallback(() => {
     setCurrentSearchMode("findByRating");
@@ -74,14 +75,14 @@ const ActivsList = ({
   }, [find, searchRating, retrieveActivs]);
 
   const retrieveNextPage = useCallback(() => {
-    if (currentSearchMode === "findByTitle") {
-      findByTitle();
+    if (currentSearchMode === "findByName") {
+      findByName();
     } else if (currentSearchMode === "findByRating") {
       findByRating();
     } else {
       retrieveActivs();
     }
-  }, [currentSearchMode, findByTitle, findByRating, retrieveActivs]);
+  }, [currentSearchMode, findByName, findByRating, retrieveActivs]);
 
   // Use effect to carry out side effect functionality
   // useEffect(() => {
@@ -99,9 +100,9 @@ const ActivsList = ({
 
 
   // Other functions that are not depended on by useEffect
-  const onChangeSearchTitle = e => {
-    const searchTitle = e.target.value;
-    setSearchTitle(searchTitle);
+  const onChangeSearchName = e => {
+    const searchName = e.target.value;
+    setSearchName(searchName);
   }
 
   const onChangeSearchRating = e => {
@@ -115,20 +116,19 @@ const ActivsList = ({
         <Form>
           <Row>
             <Col>
-            <img src="/images/hiking_sample1.jpg" alt="hiking" className="frontPageImgs"/>
-            {/* https://www.rei.com/learn/expert-advice/thru-hiking-basics.html */}
+            <img src="/images/toomas-tartes-Yizrl9N_eDA-unsplash-hiking.jpg" alt="hiking" className="frontPageImgs"/>
             <Form.Group className="mb-3">
               <Form.Control
               type="text"
-              placeholder="Search by title"
-              value={searchTitle}
-              onChange={onChangeSearchTitle}
+              placeholder="Search by city, name, or activities"
+              value={searchName}
+              onChange={onChangeSearchName}
               />
             </Form.Group>
             <Button 
               variant="primary"
               type="button"
-              onClick={findByTitle}
+              onClick={findByName}
             >
               Search
             </Button>
@@ -164,36 +164,46 @@ const ActivsList = ({
             return (
               <Col key={activ._id}>
                 <Card className="activsListCard">
-                { user && (
-                    favorites.includes(activ._id) ?
-                    <BsStarFill className="star starFill" onClick={() => {
-                      deleteFavorite(activ._id);
-                    }}/>
-                    :
-                    <BsStar className="star starEmpty" onClick={() => {
-                      addFavorite(activ._id);
-                    }}/>
-                ) }
-                <Card.Img 
-                  className="smallPoster" 
-                  src={activ.poster+"/100px180"}
-                  alt={"poster not available"}
-                  onError={event => {
-                    event.target.src = "../images/NoPosterAvailable-crop.jpg"
-                    event.onerror = null
-                  }}
-                  />
-                  <Card.Body>
-                    <Card.Title> {activ.title}</Card.Title>
-                    <Card.Text>
-                      Rating: {activ.rated}  
+                  { user && (
+                      favorites.includes(activ._id) ?
+                      <BsHeartFill className="heart heartFill" onClick={() => {
+                        deleteFavorite(activ._id);
+                      }}/>
+                      :
+                      <BsHeart className="heart heartEmpty" onClick={() => {
+                        addFavorite(activ._id);
+                      }}/>
+                  ) }
+                  <Link to={"/activs/"+activ._id}>
+                    <Card.Img 
+                      className="smallPoster" 
+                      src={activ.poster+"/100px180"}
+                      alt={"poster not available"}
+                      onError={event => {
+                        event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"
+                        event.onerror = null
+                      }}
+                      />
+                  </Link>
+                  <Card.Body className="activCardBody">
+                    <Card.Name> {activ.name}</Card.Name>
+                    <Card.Text className="activTags">
+                      {/* Tags: {activ.tags} */}
+                      Tags: { activ.tags.map((tag, i) => {
+                        return (
+                          <option value={tag}
+                          key={i}>
+                            {tag}
+                          </option>
+                        )
+                      })}
                     </Card.Text>  
-                    <Card.Text>
-                      {activ.plot}
+                    <Card.Text className="activDescription">
+                      {activ.description}
                     </Card.Text>
-                    <Link to={"/activs/"+activ._id}>
+                    {/* <Link to={"/activs/"+activ._id}>
                       View Reviews 
-                    </Link>
+                    </Link> */}
                   </Card.Body>  
                 </Card>
               </Col>
