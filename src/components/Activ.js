@@ -64,7 +64,7 @@ const Activ = ({ user }) => {
             src={activ.poster+"/100px250"}
             alt={"poster not available"}
             onError={event => {
-              event.target.src = "../images/NoPosterAvailable-crop.jpg"
+              event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"
               event.onerror = null
             }}
             fluid />
