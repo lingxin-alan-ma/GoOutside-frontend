@@ -12,6 +12,14 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import "./ActivsList.css";
 
+const images = [
+  "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/photo-1525721653822-f9975a57cd4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/photo-1496545672447-f699b503d270?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80",
+  "https://images.unsplash.com/photo-1600403477955-2b8c2cfab221?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/photo-1601226041388-8bbabdd6e37e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+];
+
 const ActivsList = ({
   user,
   favorites,
@@ -21,26 +29,27 @@ const ActivsList = ({
   // useState to set state values
   const [activs, setActivs] = useState([]);
   const [searchName, setSearchName] = useState("");
-  const [searchRating, setSearchRating] = useState("");
-  // const [ratings, setRatings] = useState(["All Ratings"]);
+  const [searchTag, setSearchTag] = useState("");
+  const [tags, setTags] = useState(["All Tags"]);
   const [currentPage, setCurrentPage] = useState(0);
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
 
-  // const retrieveRatings = useCallback(() => {
-  //   ActivDataService.getRatings()
-  //     .then(response => {
-  //       setRatings(["All Ratings"].concat(response.data))
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     })
-  // }, []); // empty array as 2nd arg of useCallback: this func has no dependencies
+  const retrieveTags = useCallback(() => {
+    ActivDataService.getTags()
+      .then(response => {
+        setTags(["All Tags"].concat(response.data))
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }, []); // empty array as 2nd arg of useCallback: this func has no dependencies
 
   const retrieveActivs = useCallback(() => {
     setCurrentSearchMode("");
     ActivDataService.getAll(currentPage)
       .then(response => {
+        // console.log(response.data.activs);
         setActivs(response.data.activs);
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page);
@@ -65,29 +74,29 @@ const ActivsList = ({
     find(searchName, "title");
   }, [find, searchName]);
 
-  const findByRating = useCallback(() => {
-    setCurrentSearchMode("findByRating");
-    if (searchRating === "All Ratings") {
+  const findByTag = useCallback(() => {
+    setCurrentSearchMode("findByTag");
+    if (searchTag === "All Tags") {
       retrieveActivs();
     } else {
-      find(searchRating, "rated");
+      find(searchTag, "tags");
     }
-  }, [find, searchRating, retrieveActivs]);
+  }, [find, searchTag, retrieveActivs]);
 
   const retrieveNextPage = useCallback(() => {
     if (currentSearchMode === "findByName") {
       findByName();
-    } else if (currentSearchMode === "findByRating") {
-      findByRating();
+    } else if (currentSearchMode === "findByTag") {
+      findByTag();
     } else {
       retrieveActivs();
     }
-  }, [currentSearchMode, findByName, findByRating, retrieveActivs]);
+  }, [currentSearchMode, findByName, findByTag, retrieveActivs]);
 
   // Use effect to carry out side effect functionality
-  // useEffect(() => {
-  //   retrieveRatings();
-  // }, [retrieveRatings]);
+  useEffect(() => {
+    retrieveTags();
+  }, [retrieveTags]);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -105,9 +114,9 @@ const ActivsList = ({
     setSearchName(searchName);
   }
 
-  const onChangeSearchRating = e => {
-    const searchRating = e.target.value;
-    setSearchRating(searchRating);
+  const onChangeSearchTag = e => {
+    const searchTag = e.target.value;
+    setSearchTag(searchTag);
   }
 
   return (
@@ -116,7 +125,12 @@ const ActivsList = ({
         <Form>
           <Row>
             <Col>
-            <img src="/images/toomas-tartes-Yizrl9N_eDA-unsplash-hiking.jpg" alt="hiking" className="frontPageImgs"/>
+            <img 
+              src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+              alt="hiking" 
+              className="frontPageImgs"
+              style={{maxHeight: 500}}
+            />
             <Form.Group className="mb-3">
               <Form.Control
               type="text"
@@ -126,7 +140,7 @@ const ActivsList = ({
               />
             </Form.Group>
             <Button 
-              variant="primary"
+              variant="light"
               type="button"
               onClick={findByName}
             >
@@ -137,13 +151,13 @@ const ActivsList = ({
               <Form.Group className="mb-3">
                 <Form.Control 
                   as="select"
-                  onChange={onChangeSearchRating}
+                  onChange={onChangeSearchTag}
                 >
-                  { ratings.map((rating, i) => {
+                  { tags.map((tag, i) => {
                     return (
-                      <option value={rating}
+                      <option value={tag}
                       key={i}>
-                        {rating}
+                        {tag}
                       </option>
                     )
                   })}
@@ -152,7 +166,7 @@ const ActivsList = ({
               <Button 
                 variant="primary"
                 type="button" 
-                onClick={findByRating}
+                onClick={findByTag}
               >
                 Search 
               </Button>
@@ -186,9 +200,8 @@ const ActivsList = ({
                       />
                   </Link>
                   <Card.Body className="activCardBody">
-                    <Card.Name> {activ.name}</Card.Name>
-                    <Card.Text className="activTags">
-                      {/* Tags: {activ.tags} */}
+                    <Card.Title> {activ.name}</Card.Title>
+                    <Card.Text className="activTags" style={{color: "blue"}}>
                       Tags: { activ.tags.map((tag, i) => {
                         return (
                           <option value={tag}
@@ -198,12 +211,12 @@ const ActivsList = ({
                         )
                       })}
                     </Card.Text>  
+                    <Card.Text>
+                      {activ.address[1]}
+                    </Card.Text>
                     <Card.Text className="activDescription">
                       {activ.description}
                     </Card.Text>
-                    {/* <Link to={"/activs/"+activ._id}>
-                      View Reviews 
-                    </Link> */}
                   </Card.Body>  
                 </Card>
               </Col>

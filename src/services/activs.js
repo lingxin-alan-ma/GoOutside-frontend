@@ -14,6 +14,10 @@ class ActivDataService {
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/ratings`);
   }
 
+  getTags() {
+    return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/tags`);
+  }
+
   getActivDetail(movie_id) {
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/id/${movie_id}`);
   }
