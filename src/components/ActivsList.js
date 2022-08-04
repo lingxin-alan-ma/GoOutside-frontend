@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-// import { BsStar, BsStarFill } from "react-icons/bs";
+import { BsStar, BsStarFill } from "react-icons/bs";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import "./ActivsList.css";
@@ -71,7 +71,7 @@ const ActivsList = ({
 
   const findByName = useCallback(() => {
     setCurrentSearchMode("findByName");
-    find(searchName, "title");
+    find(searchName, "name");
   }, [find, searchName]);
 
   const findByTag = useCallback(() => {
@@ -129,7 +129,7 @@ const ActivsList = ({
               src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
               alt="hiking" 
               className="frontPageImgs"
-              style={{maxHeight: 500}}
+              style={{maxHeight: 400}}
             />
             <Form.Group className="mb-3">
               <Form.Control
@@ -147,7 +147,10 @@ const ActivsList = ({
               Search
             </Button>
             </Col>
-            {/* <Col>
+          </Row>
+          <br></br>
+          <Row>
+            <Col>
               <Form.Group className="mb-3">
                 <Form.Control 
                   as="select"
@@ -164,14 +167,14 @@ const ActivsList = ({
                 </Form.Control>
               </Form.Group>
               <Button 
-                variant="primary"
+                variant="light"
                 type="button" 
                 onClick={findByTag}
               >
                 Search 
               </Button>
-            </Col>     */}
-          </Row>
+            </Col>
+          </Row>    
         </Form>
         <Row className="activRow">
           { activs.map((activ) => {
