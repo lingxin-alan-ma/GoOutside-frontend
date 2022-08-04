@@ -9,113 +9,111 @@ import Upload from "./Upload";
 // window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const AddActiv = ({ user }) => {
-  // const navigate = useNavigate();
-  // let params = useParams();
+  const navigate = useNavigate();
+  let params = useParams();
 
-  // const [name, setName] = useState();
-  // const [address, setAddress] = useState([]);
-  // const [description, setDescription] = useState();
-  // const [imagesUrl, setImagesUrl] = useState();
-  // const [imageFile, setImageFile] = useState(null);
-  // const [tags, setTags] = useState([]);
+  const [name, setName] = useState();
+  const [address, setAddress] = useState();
+  const [description, setDescription] = useState();
+  const [imageUrl, setImageUrl] = useState();
 
+  const [tag, setTag] = useState();
 
-  // const config = {
-  //   bucketName: process.env.REACT_APP_BUCKET_NAME,
-  //   //dirName: 'media', /* optional */
-  //   region: process.env.REACT_APP_REGION,
-  //   accessKeyId: process.env.REACT_APP_ACCESS,
-  //   secretAccessKey: process.env.REACT_APP_SECRET,
-  //   //s3Url: 'https:/your-custom-s3-url.com/', /* optional */
-  // }
+  const onChangeName = e => {
+    setName(e.target.value);
+  }
 
-  //const ReactS3Client = new S3(config);
-  /*  Notice that if you don't provide a dirName, the file will be automatically uploaded to the root of your bucket */
+  const onChangeAddress = e => {
+    setAddress(e.target.value);
+  }
 
-  // /* This is optional */
-  // const newFileName = "name";
+  const onChangeDescription = e => {
+    setDescription(e.target.value);
+  }
 
+  const onChangeTag = e => {
+    setTag(e.target.value);
+  }
 
-  // const handleFileInput = (e) => {
-  //   e.preventDefault();
-  //   setImageFile(e.target.files[0]);
-  // }
-
-
-  // const uploadPic = async (imageFile) => {
-  //   const ReactS3Client = new S3(config);
-  //   console.log(imageFile.name);
-  //   ReactS3Client
-  //     .uploadFile(imageFile, imageFile.name)
-  //     .then(data => {
-  //       console.log(data.Location);
-  //       //setImagesUrl(data.Location);
-  //     })
-  //     .catch(err => console.error(err));
-  // }
-
-
-  // const saveActiv = () => {
-  //   var data = {
-  //     user_id: user.googleId,
-  //     name: name,
-  //     address: address,
-  //     imagesUrl: imagesUrl,
-  //     description: description,
-  //     tags: tags
-  //   }
-  //   ActivDataService.creatActiv(data)
-  //     .then(response => {
-  //       //navigate("/activs/" + params.id)
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
-  // }
+  const saveActiv = () => {
+    var data = {
+      user_id: user.googleId,
+      name: name,
+      address: address,
+      imageUrl: imageUrl,
+      description: description,
+      tag: tag
+    }
+    // ActivDataService.creatActiv(data)
+    //   .then(response => {
+    //     //navigate("/activs/" + params.id)
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+    console.log(data);
+  }
 
   return (
     <Container className="main-container">
-      {/* <Form>
+      
+      <Form class="form-horizontal">
         <Form.Group className="mb-3">
-          <Form.Label>{"Create"} activity</Form.Label>
-          <br></br>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            label="Name"
-          />
-          <br></br>
-          <input
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            label="Address"
-          />
-          <br></br>
-          <input
-            type="file"
-            onChange={handleFileInput}
-          />
-          <button onClick={() => {console.log(imageFile.name);uploadPic(imageFile)}}>Upload</button>
-          <br></br>
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            label="Description"
-          />
-          <br></br>
-          <input
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-            label="Tags"
-          />
+          <Form.Label>Name:</Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Enter name"
+            required
+            name={ name }
+            onChange={ onChangeName }
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Address:</Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Enter address"
+            required
+            address={ address }
+            onChange={ onChangeAddress }
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Description:</Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Enter description"
+            required
+            description={ description }
+            onChange={ onChangeDescription }
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Tag:</Form.Label>
+          <Form.Select 
+            aria-label="Tag:" 
+            onChange={onChangeTag}
+            tag={ tag }
+            >
+            <option value="hiking">hiking</option>
+            <option value="climbing">climbing</option>
+            <option value="fishing">fishing</option>
+            <option value="kayaking">kayaking</option>
+          </Form.Select>
         </Form.Group>
       </Form>
 
+      <Upload setImageUrl={setImageUrl}></Upload>
+      <br></br>
+      <br></br>
+      <br></br>
       <Button variant="primary" onClick={saveActiv}>
         Submit
-      </Button> */}
-      <Upload></Upload>
-      
+      </Button>
+
     </Container>
   )
 }
