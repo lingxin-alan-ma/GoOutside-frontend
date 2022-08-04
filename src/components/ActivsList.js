@@ -7,9 +7,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { BsStar, BsStarFill } from "react-icons/bs";
+import { BsStar, BsStarFill, BsTextCenter } from "react-icons/bs";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { Slide } from 'react-slideshow-image';
 
+import "react-slideshow-image/dist/styles.css";
 import "./ActivsList.css";
 
 const images = [
@@ -119,18 +121,40 @@ const ActivsList = ({
     setSearchTag(searchTag);
   }
 
+  const slideProperties = {
+    duration: 5000,
+    transitionDuration: 500,
+    infinite: true,
+    indicators: true,
+    arrows: true,
+    pauseOnHover: true,
+  };
+
+  const Slideshow = () => {
+    return (
+      <div className="slide-container">
+        <Slide {...slideProperties}>
+          {images.map((each, index) => (
+            <img key={index} style={{ width: "100%", maxHeight: 500, objectFit: "cover" }} src={each} />
+          ))}
+        </Slide>
+      </div>
+    );
+  };
+
   return (
     <div className="App">
+      <Slideshow />
       <Container className="main-container">
         <Form>
           <Row>
             <Col>
-            <img 
+            {/* <img 
               src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
               alt="hiking" 
               className="frontPageImgs"
               style={{maxHeight: 400}}
-            />
+            /> */}
             <Form.Group className="mb-3">
               <Form.Control
               type="text"
