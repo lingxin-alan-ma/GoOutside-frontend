@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
 
+import S3 from 'react-aws-s3';
 
-import S3 from "react-aws-s3";
-
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const AddActiv = ({ user }) => {
   const navigate = useNavigate();
@@ -22,18 +22,18 @@ const AddActiv = ({ user }) => {
 
   const config = {
     bucketName: proces.env.REACT_APP_BUCKET_NAME,
-    dirName: 'media', /* optional */
+    //dirName: 'media', /* optional */
     region: proces.env.REACT_APP_REGION,
     accessKeyId: process.env.REACT_APP_ACCESS,
     secretAccessKey: process.env.REACT_APP_SECRET,
-    s3Url: 'https:/your-custom-s3-url.com/', /* optional */
+    //s3Url: 'https:/your-custom-s3-url.com/', /* optional */
   }
 
   const ReactS3Client = new S3(config);
   /*  Notice that if you don't provide a dirName, the file will be automatically uploaded to the root of your bucket */
 
   /* This is optional */
-  const newFileName = 'test-file';
+  const newFileName = name;
 
 
   const handleFileInput = (e) => {
@@ -52,9 +52,6 @@ const AddActiv = ({ user }) => {
   }
 
 
-
-
-
   const saveActiv = () => {
     var data = {
       user_id: user.googleId,
@@ -66,7 +63,7 @@ const AddActiv = ({ user }) => {
     }
     ActivDataService.creatActiv(data)
       .then(response => {
-        navigate("/movies/" + params.id)
+        navigate("/activs/" + params.id)
       })
       .catch(e => {
         console.log(e);
@@ -110,8 +107,6 @@ const AddActiv = ({ user }) => {
           />
         </Form.Group>
       </Form>
-
-      
 
       <Button variant="primary" onClick={saveActiv}>
         Submit
