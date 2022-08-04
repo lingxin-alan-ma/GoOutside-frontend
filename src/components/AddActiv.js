@@ -21,9 +21,9 @@ const AddActiv = ({ user }) => {
 
 
   const config = {
-    bucketName: proces.env.REACT_APP_BUCKET_NAME,
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
     //dirName: 'media', /* optional */
-    region: proces.env.REACT_APP_REGION,
+    region: process.env.REACT_APP_REGION,
     accessKeyId: process.env.REACT_APP_ACCESS,
     secretAccessKey: process.env.REACT_APP_SECRET,
     //s3Url: 'https:/your-custom-s3-url.com/', /* optional */
@@ -33,10 +33,11 @@ const AddActiv = ({ user }) => {
   /*  Notice that if you don't provide a dirName, the file will be automatically uploaded to the root of your bucket */
 
   /* This is optional */
-  const newFileName = name;
+  const newFileName = "name";
 
 
   const handleFileInput = (e) => {
+    e.preventDefault();
     setImageFile(e.target.files[0]);
   }
 
@@ -75,31 +76,31 @@ const AddActiv = ({ user }) => {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>{"Create"} activity</Form.Label>
+          <br></br>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             label="Name"
           />
+          <br></br>
           <input
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             label="Address"
           />
+          <br></br>
           <input
             type="file"
             onChange={handleFileInput}
           />
-          <button onClick={() => {uploadFile(imageFile)}}>Upload</button>
+          <button onClick={() => {uploadPic(imageFile)}}>Upload</button>
+          <br></br>
           <input
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             label="Description"
           />
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            label="Name"
-          />
+          <br></br>
           <input
             value={tags}
             onChange={(e) => setTags(e.target.value)}
@@ -114,3 +115,5 @@ const AddActiv = ({ user }) => {
     </Container>
   )
 }
+
+export default AddActiv;

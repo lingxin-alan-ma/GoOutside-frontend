@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, Link} from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from 'react-bootstrap/Container';
@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import AddReview from "./components/AddReview";
 
+import AddActiv from './components/AddActiv';
 import ActivsList from "./components/ActivsList";
 import Activ from "./components/Activ";
 import Favorites from "./components/Favorites";
@@ -34,7 +35,7 @@ function App() {
   const deleteFavorite = (activId) => {
     setFavorites(favorites.filter(f => f !== activId));
   }
-  
+
   const getFavorite = useCallback((userId) => {
     FavoriteDataService.getFavoritesById(userId)
       .then(response => {
@@ -45,7 +46,7 @@ function App() {
         console.log(`Get favorite failed: ${e}`);
       })
   }, []);
-  
+
   const updateFavorite = useCallback((userId, favorites) => {
     // console.log(favorites);
     let data = {
@@ -57,15 +58,15 @@ function App() {
         console.log(`update favorite failed: ${e}`);
       })
   }, []);
-  
+
   useEffect(() => {
-    if(user) {
+    if (user) {
       getFavorite(user.googleId);
     }
   }, [user]);
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       updateFavorite(user.googleId, favorites);
     }
   }, [favorites]);
@@ -74,7 +75,7 @@ function App() {
     let loginData = JSON.parse(localStorage.getItem("login"));
     if (loginData) {
       let loginExp = loginData.exp;
-      let now = Date.now()/1000;
+      let now = Date.now() / 1000;
       if (now < loginExp) {
         // Not expired
         setUser(loginData);
@@ -87,80 +88,83 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-    <div className="App">
-      <Navbar bg="dark" expand="lg" sticky="top" variant="dark">
-        <Container className="container-fluid">
-        <Navbar.Brand className="brand" href="/">
-          <img src="/images/gooutside-logo.jpg" alt="GoOutside logo" className="goOutsideLogo"/>
-          Go<span>Outside</span>
-          </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" >
-          <Nav className="ml-auto">
-            <Nav.Link as={Link}  to={"/activs"}>
-              Activities
-            </Nav.Link>
-            { user ? (
-              <ul>
-                <Nav.Link as={Link}  to={"/favorites"}>
-                  Favorites
+      <div className="App">
+        <Navbar bg="dark" expand="lg" sticky="top" variant="dark">
+          <Container className="container-fluid">
+            <Navbar.Brand className="brand" href="/">
+              <img src="/images/gooutside-logo.jpg" alt="GoOutside logo" className="goOutsideLogo" />
+              Go<span>Outside</span>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav" >
+              <Nav className="ml-auto">
+                <Nav.Link as={Link} to={"/activs"}>
+                  Activities
                 </Nav.Link>
-                <Nav.Link as={Link}  to={"/myactiv"}>
-                  Add/Edit
-                </Nav.Link>
-              </ul>
-            ) : null}
-          </Nav>
-        </Navbar.Collapse>
-        { user ? (
-          <Logout setUser={setUser} />
-        ) : (
-          <Login setUser={setUser} />
-        )}
-        </Container>
-      </Navbar>  
-      <Routes>
-        <Route exact path={"/"} element={
-          <ActivsList 
-            user={ user }
-            addFavorite={ addFavorite }
-            deleteFavorite={ deleteFavorite }
-            favorites={ favorites }
-          />}
-          />
-        <Route exact path={"/activs"} element={
-          <ActivsList 
-            user={ user }
-            addFavorite={ addFavorite }
-            deleteFavorite={ deleteFavorite }
-            favorites={ favorites }
-          />}
-          />
-        <Route path={"/activs/:id/"} element={
-          <Activ user={ user } />}
-          />  
-        <Route path={"/activs/:id/review"} element={
-          <AddReview user={ user } />}
-          /> 
-        <Route path={"/favorites"} element={
-          user ?
-            <DndProvider backend={HTML5Backend}>
-              <Favorites
-                user={ user }
-                favorites={ favorites }
-              />
-            </DndProvider>
-            :
+                {user ? (
+                  <ul>
+                    <Nav.Link as={Link} to={"/favorites"}>
+                      Favorites
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/myactiv"}>
+                      Add/Edit
+                    </Nav.Link>
+                  </ul>
+                ) : null}
+              </Nav>
+            </Navbar.Collapse>
+            {user ? (
+              <Logout setUser={setUser} />
+            ) : (
+              <Login setUser={setUser} />
+            )}
+          </Container>
+        </Navbar>
+        <Routes>
+          <Route exact path={"/"} element={
             <ActivsList
-              user={ user }
-              addFavorite={ addFavorite }
-              deleteFavorite={ deleteFavorite }
-              favorites={ favorites }
-            />}           
-          /> 
+              user={user}
+              addFavorite={addFavorite}
+              deleteFavorite={deleteFavorite}
+              favorites={favorites}
+            />}
+          />
+          <Route exact path={"/activs"} element={
+            <ActivsList
+              user={user}
+              addFavorite={addFavorite}
+              deleteFavorite={deleteFavorite}
+              favorites={favorites}
+            />}
+          />
+          <Route path={"/activs/:id/"} element={
+            <Activ user={user} />}
+          />
+          <Route path={"/myactiv"} element={
+            <AddActiv user={user} />}
+          />
+          <Route path={"/activs/:id/review"} element={
+            <AddReview user={user} />}
+          />
+          <Route path={"/favorites"} element={
+            user ?
+              <DndProvider backend={HTML5Backend}>
+                <Favorites
+                  user={user}
+                  favorites={favorites}
+                />
+              </DndProvider>
+              :
+              <ActivsList
+                user={user}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                favorites={favorites}
+              />}
+          />
         </Routes>
       </div>
-      </GoogleOAuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 
