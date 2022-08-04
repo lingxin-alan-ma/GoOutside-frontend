@@ -88,7 +88,8 @@ const AddActiv = ({ user }) => {
             required
             description={ description }
             onChange={ onChangeDescription }
-          ></Form.Control>
+            as="textarea" rows={3}
+          ></Form.Control >
         </Form.Group>
 
         <Form.Group className="mb-3">
