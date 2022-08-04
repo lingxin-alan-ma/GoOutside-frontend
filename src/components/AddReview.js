@@ -70,7 +70,7 @@ const AddReview = ({ user }) => {
               defaultValue={ editing ? location.state.currentReview.review : "" }
             />
           </Form.Group>
-            <Button variant="primary" onClick={ saveReview }>
+            <Button variant="light" onClick={ saveReview }>
               Submit
             </Button>
         </Form>

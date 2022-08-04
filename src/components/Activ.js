@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ActivDataService from '../services/activs';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
@@ -8,16 +8,29 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
 const Activ = ({ user }) => {
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  });
+  
+  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+
+  const mapStyles = {
+    width: '100%',
+    height: '100%',
+  };
 
   let params = useParams();
 
   const [activ, setActiv] = useState({
     id: null,
-    title: "",
-    rated: "",
+    name: "",
+    tags: [],
     reviews: []
   });
 
@@ -33,6 +46,7 @@ const Activ = ({ user }) => {
     }
     getActiv(params.id)
   }, [params.id]);
+  console.log(activ.reviews);
 
   const deleteReview = (reviewId, index) => {
     let data = {
@@ -72,11 +86,21 @@ const Activ = ({ user }) => {
           </Col>
           <Col>
             <Card>
-              <Card.Header as="h5">{activ.title}</Card.Header>
+              <Card.Header as="h5">{activ.name}</Card.Header>
               <Card.Body>
                 <Card.Text>
-                  {activ.plot}
+                  {activ.description}
                 </Card.Text>
+                <Card.Text className="activTags" style={{color: "blue"}}>
+                  Tags: { activ.tags.map((tag, i) => {
+                    return (
+                      <option value={tag}
+                      key={i}>
+                        {tag}
+                      </option>
+                    )
+                  })}
+                </Card.Text>  
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
                     Add Review
@@ -117,6 +141,15 @@ const Activ = ({ user }) => {
                 </div>
               )
             })}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            { (isLoaded) && 
+              <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
+                <Marker position={center} />
+              </GoogleMap>
+            }
           </Col>
         </Row>
       </Container>
