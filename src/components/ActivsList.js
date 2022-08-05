@@ -22,6 +22,8 @@ const images = [
   "https://images.unsplash.com/photo-1601226041388-8bbabdd6e37e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 ];
 
+const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
+
 const ActivsList = ({
   user,
   favorites,
@@ -135,7 +137,16 @@ const ActivsList = ({
       <div className="slide-container">
         <Slide {...slideProperties}>
           {images.map((each, index) => (
-            <img key={index} style={{ width: "100%", maxHeight: 500, objectFit: "cover" }} src={each} />
+            <img 
+              key={index} 
+              style={{ width: "100%", maxHeight: 500, objectFit: "cover" }} 
+              src={each} 
+              alt={"poster not available"}
+              onError={event => {
+                event.target.src = noImageAvailable
+                event.onerror = null
+              }}
+            />
           ))}
         </Slide>
       </div>
@@ -145,11 +156,20 @@ const ActivsList = ({
   return (
     <div className="App">
       <Slideshow />
+      {/* <Card.Body >
+        <Card.Text className="center-title">
+          Explore a Bigger World
+        </Card.Text>
+      </Card.Body> */}
       <Container className="main-container">
         <Form>
           <Row>
             <Col>
+              
               <Form.Group className="center-search">
+              <Card.Text className="center-title">
+                Explore a Bigger World
+              </Card.Text>
                 <Form.Control
                   type="text"
                   placeholder="Search by city, name, or activities"
@@ -216,7 +236,7 @@ const ActivsList = ({
                       src={activ.poster+"/100px180"}
                       alt={"poster not available"}
                       onError={event => {
-                        event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"
+                        event.target.src = noImageAvailable
                         event.onerror = null
                       }}
                       />

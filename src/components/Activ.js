@@ -11,6 +11,7 @@ import moment from 'moment';
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
+const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
 
 const Activ = ({ user }) => {
 
@@ -79,7 +80,7 @@ const Activ = ({ user }) => {
             src={activ.poster+"/100px250"}
             alt={"poster not available"}
             onError={event => {
-              event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"
+              event.target.src = noImageAvailable
               event.onerror = null
             }}
             fluid />
