@@ -229,14 +229,15 @@ const ActivsList = ({
                   <Card.Body className="activCardBody">
                     <Card.Title> {activ.name}</Card.Title>
                     <Card.Text className="activTags" style={{color: "blue"}}>
-                      Tags: { activ.tags.map((tag, i) => {
+                      {/* Tags: { activ.tags.map((tag, i) => {
                         return (
                           <option value={tag}
                           key={i}>
                             {tag}
                           </option>
                         )
-                      })}
+                      })} */}
+                      {activ.tags}
                     </Card.Text>  
                     <Card.Text>
                       {activ.address[1]}

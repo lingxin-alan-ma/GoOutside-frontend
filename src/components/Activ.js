@@ -30,7 +30,8 @@ const Activ = ({ user }) => {
   const [activ, setActiv] = useState({
     id: null,
     name: "",
-    tags: [],
+    // tags: [],
+    tags: "",
     reviews: []
   });
 
@@ -92,14 +93,15 @@ const Activ = ({ user }) => {
                   {activ.description}
                 </Card.Text>
                 <Card.Text className="activTags" style={{color: "blue"}}>
-                  Tags: { activ.tags.map((tag, i) => {
+                  {/* Tags: { activ.tags.map((tag, i) => {
                     return (
                       <option value={tag}
                       key={i}>
                         {tag}
                       </option>
                     )
-                  })}
+                  })} */}
+                  {activ.tags}
                 </Card.Text>  
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
