@@ -29,6 +29,18 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 *   upload activity page
 *   favorite page
 
+## #Iter1:
+### Heroku App frontend: https://gooutside-frontend.herokuapp.com
+### Heroku App backend: https://gooutside-backend.herokuapp.com
+
+### Team member contribution:
+* Everyone contributed equally amount.
+* Everyone is involved in the wireframe design, transition from boilerplate, and actual app backend and frontend initial set up (structural) coding.
+* Each team member's concentrations are as follows:
+  * Cuiqi focuses on js files implementation in frontend, particual about add/edit acitivity funcions. 
+  * Lingxin focuses on js files implementation in frontend and overal frontend styling. 
+  * Xiao focuses on backend implementation and backend-frontend connection.
+
 #
 # Getting Started with Create React App
 
