@@ -77,8 +77,8 @@ const Activ = ({ user }) => {
           <div className="poster">
           <Image
             className="bigPicture"
-            src={activ.poster+"/100px250"}
-            alt={"poster not available"}
+            src={activ.images}
+            alt={"images not available"}
             onError={event => {
               event.target.src = noImageAvailable
               event.onerror = null
