@@ -130,7 +130,7 @@ const ActivsList = ({
     pauseOnHover: true,
   };
 
-  const Slideshow = () => {
+  const Slideshow = useCallback(() => {
     return (
       <div className="slide-container">
         <Slide {...slideProperties}>
@@ -140,7 +140,7 @@ const ActivsList = ({
         </Slide>
       </div>
     );
-  };
+  }, []);
 
   return (
     <div className="App">
@@ -149,33 +149,28 @@ const ActivsList = ({
         <Form>
           <Row>
             <Col>
-            {/* <img 
-              src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
-              alt="hiking" 
-              className="frontPageImgs"
-              style={{maxHeight: 400}}
-            /> */}
-            <Form.Group className="mb-3">
-              <Form.Control
-              type="text"
-              placeholder="Search by city, name, or activities"
-              value={searchName}
-              onChange={onChangeSearchName}
-              />
-            </Form.Group>
-            <Button 
-              variant="light"
-              type="button"
-              onClick={findByName}
-            >
-              Search
-            </Button>
+              <Form.Group className="center-search">
+                <Form.Control
+                  type="text"
+                  placeholder="Search by city, name, or activities"
+                  value={searchName}
+                  onChange={onChangeSearchName}
+                  aria-label="Search"
+                  aria-describedby="basic-addon1"
+                />
+                <Button className="btn-secondary"
+                  // variant="dark" 
+                  id="button-addon2"
+                  onClick={findByName}
+                >
+                  Search
+                </Button>
+              </Form.Group>
             </Col>
           </Row>
-          <br></br>
           <Row>
             <Col>
-              <Form.Group className="mb-3">
+              <Form.Group className="mb-3" style={{display: "flex"}}>
                 <Form.Control 
                   as="select"
                   onChange={onChangeSearchTag}
@@ -189,14 +184,14 @@ const ActivsList = ({
                     )
                   })}
                 </Form.Control>
+                <Button className="btn-secondary"
+                  // variant="dark" 
+                  id="button-addon2"
+                  onClick={findByTag}
+                >
+                  Search
+                </Button>
               </Form.Group>
-              <Button 
-                variant="light"
-                type="button" 
-                onClick={findByTag}
-              >
-                Search 
-              </Button>
             </Col>
           </Row>    
         </Form>
@@ -252,13 +247,25 @@ const ActivsList = ({
           })}
         </Row>
         <br />
+        {/* <Card.Body style={{color: "white", display: "flex"}}>
+        <Card.Text >
+          Showing page: { currentPage + 1 }.
+        </Card.Text>
+        
+        <Button className="btn-secondary" style={{color: "lightgreen", alignItems: "center"}}
+          variant="link"
+          onClick={() => { setCurrentPage(currentPage + 1)} }
+        >
+          Get next { entriesPerPage } results
+        </Button>
+        </Card.Body> */}
         Showing page: { currentPage + 1 }.
         <Button
           variant="link"
           onClick={() => { setCurrentPage(currentPage + 1)} }
-          >
-            Get next { entriesPerPage } results
-          </Button>
+        >
+          Get next { entriesPerPage } results
+        </Button>
       </Container>
     </div>
   )
