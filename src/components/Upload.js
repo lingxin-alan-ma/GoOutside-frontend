@@ -6,7 +6,8 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 
 // a React functional component, used to create a simple upload input and button
 
-const Upload = () => {
+  
+  const Upload = ({setImageUrl}) => {
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -27,7 +28,7 @@ const Upload = () => {
         // the name of the file uploaded is used to upload it to S3
         ReactS3Client
         .uploadFile(file, file.name)
-        .then(data => console.log(data.location))
+        .then(data => {console.log(data.location); setImageUrl(data.location);})
         .catch(err => console.error(err))
     }
     return <div>
