@@ -37,9 +37,9 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 * Everyone contributed equally amount.
 * Everyone is involved in the wireframe design, transition from boilerplate, and actual app backend and frontend initial set up (structural) coding.
 * Each team member's concentrations are as follows:
-  * Cuiqi focuses on js files implementation in frontend, particual about add/edit acitivity funcions. 
-  * Lingxin focuses on js files implementation in frontend and overal frontend styling. 
-  * Xiao focuses on backend implementation and backend-frontend connection.
+  * Cuiqi focuses on js files implementation in frontend, particual about add/edit acitivity funcions, and set up MongoDB atlas and Amazon S3. 
+  * Lingxin focuses on js files implementation in frontend and overall frontend styling. 
+  * Xiao focuses on backend implementation,including all controllers and DAOs, and backend-frontend connection.
 
 #
 # Getting Started with Create React App
