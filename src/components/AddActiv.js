@@ -48,6 +48,7 @@ const AddActiv = ({ user }) => {
     console.log(data);
     ActivDataService.creatActiv(data)
       .then(response => {
+        console.log(params);
         //navigate("/activs/" + params.id)
       })
       .catch(e => {
@@ -106,8 +107,8 @@ const AddActiv = ({ user }) => {
             <option value="climbing">climbing</option>
             <option value="fishing">fishing</option>
             <option value="kayaking">kayaking</option>
-            <option value="camping">kayaking</option>
-            <option value="cycling">kayaking</option>
+            <option value="camping">camping</option>
+            <option value="cycling">cycling</option>
           </Form.Select>
         </Form.Group>
       </Form>
