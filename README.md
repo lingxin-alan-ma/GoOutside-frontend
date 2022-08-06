@@ -31,7 +31,7 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 
 ## #Iter1:
 ### Heroku App frontend: https://gooutside-frontend.herokuapp.com
-### Heroku App backend: https://gooutside-backend.herokuapp.com
+### Heroku App backend: https://gooutsides.herokuapp.com 
 
 ### Team member contribution:
 * Everyone contributed equally amount.
