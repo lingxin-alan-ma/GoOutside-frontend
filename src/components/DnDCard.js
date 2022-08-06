@@ -82,7 +82,7 @@ const DnDCard = ({ activ, index, moveCard }) => {
         <Link to={"/activs/"+activ._id}>
           <Card.Img 
             className="favoritesPoster" 
-            src={activ.poster+"/100px180"}
+            src={activ.images+"/100px180"}
             alt={"poster not available"}
             onError={event => {
               event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"
