@@ -38,20 +38,23 @@ const AddActiv = ({ user }) => {
   const saveActiv = () => {
     var data = {
       user_id: user.googleId,
+      user_name: user.name,
       name: name,
       address: address,
       imageUrl: imageUrl,
       description: description,
       tag: tag
     }
-    // ActivDataService.creatActiv(data)
-    //   .then(response => {
-    //     //navigate("/activs/" + params.id)
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
     console.log(data);
+    ActivDataService.creatActiv(data)
+      .then(response => {
+        //navigate("/activs/" + params.id)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    
+    
   }
 
   return (
@@ -103,6 +106,8 @@ const AddActiv = ({ user }) => {
             <option value="climbing">climbing</option>
             <option value="fishing">fishing</option>
             <option value="kayaking">kayaking</option>
+            <option value="camping">kayaking</option>
+            <option value="cycling">kayaking</option>
           </Form.Select>
         </Form.Group>
       </Form>
