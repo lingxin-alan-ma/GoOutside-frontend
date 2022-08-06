@@ -61,7 +61,7 @@ const AddActiv = ({ user }) => {
   return (
     <Container className="main-container">
       
-      <Form class="form-horizontal">
+      <Form className="form-horizontal">
         <Form.Group className="mb-3">
           <Form.Label>Name:</Form.Label>
           <Form.Control 
