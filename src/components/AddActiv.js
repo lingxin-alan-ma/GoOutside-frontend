@@ -53,8 +53,7 @@ const AddActiv = ({ user }) => {
       .catch(e => {
         console.log(e);
       });
-    
-    
+      
   }
 
   return (
