@@ -31,15 +31,25 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 
 ## #Iter1:
 ### Heroku App frontend: https://gooutside-frontend.herokuapp.com
-### Heroku App backend: https://gooutside-backend.herokuapp.com
+### Heroku App backend: https://gooutsides.herokuapp.com 
 
 ### Team member contribution:
 * Everyone contributed equally amount.
 * Everyone is involved in the wireframe design, transition from boilerplate, and actual app backend and frontend initial set up (structural) coding.
 * Each team member's concentrations are as follows:
-  * Cuiqi focuses on js files implementation in frontend, particual about add/edit acitivity funcions, and set up MongoDB atlas and Amazon S3. 
-  * Lingxin focuses on js files implementation in frontend and overall frontend styling. 
+  * Cuiqi focuses on js files implementation in frontend, particual about add/edit activity funcions, and set up MongoDB atlas and Amazon S3. 
+  * Lingxin focuses on database entries, js files implementation in frontend, particular about activity page and overall frontend styling. 
   * Xiao focuses on backend implementation,including all controllers and DAOs, and backend-frontend connection.
+
+## Current Screenshots
+### Front page
+![frontpage 1](screenshots/frontpage_1.png) 
+![frontpage 2](screenshots/frontpage_2.png)
+### Favorites page
+![favorites](screenshots/favorites.png)
+### Add new activity page
+![addnewactivity](screenshots/addnewactivity.png)
+
 
 #
 # Getting Started with Create React App

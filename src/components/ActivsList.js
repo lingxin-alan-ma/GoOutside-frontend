@@ -66,6 +66,7 @@ const ActivsList = ({
   const find = useCallback((query, by) => {
     ActivDataService.find(query, by, currentPage)
       .then(response => {
+        console.log(response);
         setActivs(response.data.activs);
       })
       .catch(e => {
@@ -121,6 +122,7 @@ const ActivsList = ({
   const onChangeSearchTag = e => {
     const searchTag = e.target.value;
     setSearchTag(searchTag);
+    console.log(searchTag);
   }
 
   const slideProperties = {
