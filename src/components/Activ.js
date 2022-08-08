@@ -77,6 +77,7 @@ const Activ = ({ user }) => {
           <div className="poster">
           <Image
             className="bigPicture"
+            // src={activ.images[0]}
             src={activ.images}
             alt={"images not available"}
             onError={event => {
