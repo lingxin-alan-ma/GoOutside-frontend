@@ -37,6 +37,10 @@ class ActivDataService {
   creatActiv(data) {
     return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, data);
   }
+  
+  updateActiv(data) {
+    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, data);
+  }
 
   getActivsByUser(userId){
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/userId/${userId}`);
