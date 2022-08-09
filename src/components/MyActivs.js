@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
 import ActivDataService from "../services/activs";
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import "react-slideshow-image/dist/styles.css";
-import "./MyActivs.css";
+import "./ActivsList.css";
 
 const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
 
@@ -21,9 +21,9 @@ const MyActivs = ({
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
-  // console.log("MyActive " + user);
-  // console.log(user);
-  // console.log(activs);
+  console.log("MyActive " + user);
+  console.log(user);
+  console.log(activs);
  
   const retrieveActivs = useCallback(() => { 
     ActivDataService.getActivsByUser(user.googleId)
@@ -53,9 +53,7 @@ const MyActivs = ({
         </Link>  
         </Button>      
         <Row className="activRow">
-        
-          { activs.map((activ, index) => {
-            
+          { activs.map((activ) => {
             return (
               <Col key={activ._id}>
                 <Card className="activsListCard">
@@ -72,7 +70,7 @@ const MyActivs = ({
                   <Link to={"/activs/"+activ._id}>
                     <Card.Img 
                       className="smallPoster" 
-                      src={activ.images}
+                      src={activ.images[0]}
                       alt={"poster not available"}
                       onError={event => {
                         event.target.src = noImageAvailable
@@ -90,10 +88,21 @@ const MyActivs = ({
                     </Card.Text>
                     <Card.Text className="activDescription">
                       {activ.description}
-                    </Card.Text>         
-                    <Card.Link href="../myactiv">edit</Card.Link>
-                    
-                    <Button variant = "link" onClick = {()=>{
+                    </Card.Text>
+                    { user && user.googleId === activ.user_id &&
+                      <Row>
+                        <Col>
+                          <Link to={{
+                            pathname: "/myactiv"
+                          }}
+                          state = {{
+                            currentActiv: activ
+                          }} >
+                            Edit
+                          </Link>
+                        </Col>
+                        <Col>
+                        <Button variant = "link" onClick = {()=>{
                         var data = {
                         activs_id: activ._id,
                         user_id: user.googleId,                    
@@ -116,9 +125,12 @@ const MyActivs = ({
                         })
                       }
                     }>Delete
-                    </Button> 
-                    
+                    </Button>
+                        </Col>
+                      </Row>
+                    }
                   </Card.Body>  
+
                 </Card>
               </Col>
             )
@@ -130,5 +142,6 @@ const MyActivs = ({
     </div>
   )
 }
+
 
 export default MyActivs;
