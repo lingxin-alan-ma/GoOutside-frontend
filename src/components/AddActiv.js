@@ -3,6 +3,7 @@ import ActivDataService from "../services/activs";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
+
 import S3 from 'react-aws-s3';
 import Upload from "./Upload";
 // window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -19,13 +20,27 @@ const AddActiv = ({ user }) => {
   let initialImageUrlState = "";
   let initialTagState = "";
 
+  
+
+  console.log(location.state);
+  console.log(params.id);
+  if(location.state && location.state.currentActiv){
+    editing = true;
+    initialNameState = location.state.currentActiv.name;
+    initialAddressState = location.state.currentActiv.address;
+    initialDescriptionState = location.state.currentActiv.description;
+    initialImageUrlState = location.state.currentActiv.images;
+    initialTagState = location.state.currentActiv.tags;
+  }
+  
+  
   const [name, setName] = useState(initialNameState);
   const [address, setAddress] = useState(initialAddressState);
   const [description, setDescription] = useState(initialDescriptionState);
   const [imageUrl, setImageUrl] = useState(initialImageUrlState);
   const [tag, setTag] = useState(initialTagState);
-
-  if(location.state)
+  
+  console.log(tag);
 
   const onChangeName = e => {
     setName(e.target.value);
@@ -54,7 +69,18 @@ const AddActiv = ({ user }) => {
       tag: tag
     }
     console.log(data);
-    ActivDataService.creatActiv(data)
+    if (editing) {
+      data.activ_id = location.state.currentActiv._id;
+      ActivDataService.updateActiv(data)
+        .then(response => {
+          navigate("/activs/"+params.id);
+        })
+        .catch(e => {
+          console.log(e);
+        })
+    }
+    else {
+      ActivDataService.creatActiv(data)
       .then(response => {
         console.log(params);
         //navigate("/activs/" + params.id)
@@ -62,8 +88,7 @@ const AddActiv = ({ user }) => {
       .catch(e => {
         console.log(e);
       });
-    
-    
+    }
   }
 
   return (
@@ -78,6 +103,7 @@ const AddActiv = ({ user }) => {
             required
             name={ name }
             onChange={ onChangeName }
+            defaultValue={ name }
           ></Form.Control>
         </Form.Group>
 
@@ -89,6 +115,7 @@ const AddActiv = ({ user }) => {
             required
             address={ address }
             onChange={ onChangeAddress }
+            defaultValue={ address }
           ></Form.Control>
         </Form.Group>
 
@@ -100,6 +127,7 @@ const AddActiv = ({ user }) => {
             required
             description={ description }
             onChange={ onChangeDescription }
+            defaultValue={ description }
             as="textarea" rows={3}
           ></Form.Control >
         </Form.Group>
@@ -110,7 +138,9 @@ const AddActiv = ({ user }) => {
             aria-label="Tag:" 
             onChange={onChangeTag}
             tag={ tag }
+            defaultValue = {tag}
             >
+            <option value="">chose tag</option>
             <option value="hiking">hiking</option>
             <option value="climbing">climbing</option>
             <option value="fishing">fishing</option>
@@ -121,7 +151,7 @@ const AddActiv = ({ user }) => {
         </Form.Group>
       </Form>
 
-      <Upload setImageUrl={setImageUrl}></Upload>
+      <Upload setImageUrl={setImageUrl} ImageUrl={imageUrl}></Upload>
       <br></br>
       <br></br>
       <br></br>

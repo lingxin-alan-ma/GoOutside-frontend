@@ -102,12 +102,30 @@ const MyActivs = ({
                           </Link>
                         </Col>
                         <Col>
-                          <Button variant="link" onClick={ () =>
-                          {
-                            //deleteActiv(activ._id, index)
-                          } }>
-                            Delete
-                          </Button>
+                        <Button variant = "link" onClick = {()=>{
+                        var data = {
+                        activs_id: activ._id,
+                        user_id: user.googleId,                    
+                        }
+                        console.log(data);
+                        ActivDataService.deleteActivs(data)
+                        .then(response=>{
+                          console.log(activ);
+                          console.log(activs);
+                            setActivs((activs) => {
+                              activs.splice(index, 1);
+                              console.log(activs);
+                               return ({
+                                 ...activs
+                               })                            
+                              })
+                            })   
+                        .catch(e=>{
+                          console.log(e);
+                        })
+                      }
+                    }>Delete
+                    </Button>
                         </Col>
                       </Row>
                     }
