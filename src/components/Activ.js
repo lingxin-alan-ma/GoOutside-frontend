@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ActivDataService from '../services/activs';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
@@ -8,32 +8,38 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, useLoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Slide } from 'react-slideshow-image';
+
+import Geocode from 'react-geocode';
+
+import "react-slideshow-image/dist/styles.css";
+import "./Activ.css";
 
 const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
 
+// const google = window.google;
+// var geocoder = new google.maps.Geocoder();
+
+// Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+
+const API_KEY=process.env.REACT_APP_GOOGLE_API_KEY;
+
 const Activ = ({ user }) => {
 
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-  });
-  
-  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
-
-  const mapStyles = {
-    width: '100%',
-    height: '100%',
-  };
-
   let params = useParams();
+
+  // const [user, setUser] = useState(null);
 
   const [activ, setActiv] = useState({
     id: null,
     name: "",
     // tags: [],
     tags: "",
-    reviews: []
+    reviews: [],
+    images: [],
+    coord: [],
   });
 
   useEffect(() => {
@@ -48,7 +54,7 @@ const Activ = ({ user }) => {
     }
     getActiv(params.id)
   }, [params.id]);
-  console.log(activ.reviews);
+  // console.log(activ.reviews);
 
   const deleteReview = (reviewId, index) => {
     let data = {
@@ -69,22 +75,94 @@ const Activ = ({ user }) => {
       });
   }
 
+  // const getCoordinate = useCallback((address) => {
+  //   Geocode.fromAddress(address).then(
+  //     response => {
+  //       const { lat, lng } = response.results[0].geometry.location;
+  //       console.log(lat, lng);
+  //       return `{ lat: ${lat}, lng: ${lng} }`
+  //     },
+  //     error => {
+  //       console.error(error);
+  //     },);
+  // }, []);
+
+  const getCenter = (coord) => {
+    // console.log(coord);
+    const center = { lat: 42.360, lng: -71.059};
+    try {
+      center.lat = coord[0];
+      center.lng = coord[1];
+    } catch (e) {
+      console.error(e);
+    }
+    return center;
+  }
+
+  const activSlideProperties = {
+    duration: 4000,
+    transitionDuration: 500,
+    infinite: true,
+    // indicators: true,
+    arrows: true,
+    pauseOnHover: true,
+  };
+
+  const ActivSlideshow = useCallback((images) => {
+    return (
+      <div className="slide-container">
+        <Slide {...activSlideProperties}>
+          {images.map((each, index) => (
+            <img 
+              key={index} 
+              style={{ width: "100%", maxHeight: 200, objectFit: "cover" }} 
+              src={each} 
+              alt={"poster not available"}
+              onError={event => {
+                event.target.src = noImageAvailable
+                event.onerror = null
+              }}
+            />
+          ))}
+        </Slide>
+      </div>
+    );
+  }, []);
+
   return (
     <div>
       <Container>
         <Row>
           <Col>
-          <div className="poster">
-          <Image
-            className="bigPicture"
-            // src={activ.images[0]}
-            src={activ.images}
-            alt={"images not available"}
-            onError={event => {
-              event.target.src = noImageAvailable
-              event.onerror = null
-            }}
-            fluid />
+            {/* <ActivSlideshow 
+              images={activ.images}
+            /> */}
+            <div className="poster">
+              
+              <Image
+                className="bigPicture"
+                // src={activ.images[0]}
+                src={activ.images}
+                alt={"images not available"}
+                onError={event => {
+                  event.target.src = noImageAvailable
+                  event.onerror = null
+                }}
+                fluid />
+            </div>
+
+            <div className="map">
+            <LoadScript
+              // googleMapsApiKey = {API_KEY}
+            >
+              <GoogleMap
+                mapContainerClassName="map-container"
+                center={getCenter(activ.coord)}
+                zoom={12}
+              >
+                <Marker position={getCenter(activ.coord)}/>
+              </GoogleMap>
+            </LoadScript>
             </div>
           </Col>
           <Col>
@@ -104,6 +182,7 @@ const Activ = ({ user }) => {
                     )
                   })} */}
                   {activ.tags}
+                  {/* {activ.coord} */}
                 </Card.Text>  
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
@@ -111,49 +190,60 @@ const Activ = ({ user }) => {
                   </Link> }
               </Card.Body>
             </Card>
-            <h2>Reviews</h2>
-            <br></br>
-            { activ.reviews.map((review, index) => {
-              return (
-                <div className="d-flex" key={review._id}>
-                  <div className="flex-shrink-0 reviewsText">
-                    <h5>{review.name + " reviewd on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
-                    <p className="review">{review.review}</p>
-                    { user && user.googleId === review.user_id &&
-                      <Row>
-                        <Col>
-                          <Link to={{
-                            pathname: "/activs/"+params.id+"/review"
-                          }}
-                          state = {{
-                            currentReview: review
-                          }} >
-                            Edit
-                          </Link>
-                        </Col>
-                        <Col>
-                          <Button variant="link" onClick={ () =>
-                          {
-                            deleteReview(review._id, index)
-                          } }>
-                            Delete
-                          </Button>
-                        </Col>
-                      </Row>
-                    }
-                  </div>
-                </div>
-              )
-            })}
+            <Card>
+              <Card.Header as="h2">Reviews</Card.Header>
+              <Card.Body>
+                { activ.reviews.map((review, index) => {
+                  return (
+                    <div className="d-flex" key={review._id}>
+                      <div className="flex-shrink-0 reviewsText">
+                        <h5>{review.name + " reviewd on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
+                        <p className="review">{review.review}</p>
+                        { user && user.googleId === review.user_id &&
+                          <Row>
+                            <Col>
+                              <Link to={{
+                                pathname: "/activs/"+params.id+"/review"
+                              }}
+                              state = {{
+                                currentReview: review
+                              }} >
+                                Edit
+                              </Link>
+                            </Col>
+                            <Col>
+                              <Button variant="link" onClick={ () =>
+                              {
+                                deleteReview(review._id, index)
+                              } }>
+                                Delete
+                              </Button>
+                            </Col>
+                          </Row>
+                        }
+                      </div>
+                    </div>
+                  )
+                })}     
+              </Card.Body>
+              
+            </Card>
+            
           </Col>
         </Row>
         <Row>
           <Col>
-            { (isLoaded) && 
-              <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
-                <Marker position={center} />
+            {/* <LoadScript
+              googleMapsApiKey = {API_KEY}
+            >
+              <GoogleMap
+                mapContainerClassName="map-container"
+                center={getCenter(activ.coord)}
+                zoom={12}
+              >
+                <Marker position={getCenter(activ.coord)}/>
               </GoogleMap>
-            }
+            </LoadScript> */}
           </Col>
         </Row>
       </Container>

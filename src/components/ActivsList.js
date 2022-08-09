@@ -258,7 +258,8 @@ const ActivsList = ({
                       {activ.tags}
                     </Card.Text>  
                     <Card.Text>
-                      {activ.address[1]}
+                      {/* {activ.address[1]} */}
+                      {activ.address}
                     </Card.Text>
                     <Card.Text className="activDescription">
                       {activ.description}
