@@ -89,7 +89,30 @@ const MyActivs = ({
                     <Card.Text className="activDescription">
                       {activ.description}
                     </Card.Text>
+                    { user && user.googleId === activ.user_id &&
+                      <Row>
+                        <Col>
+                          <Link to={{
+                            pathname: "/myactiv"
+                          }}
+                          state = {{
+                            currentActiv: activ
+                          }} >
+                            Edit
+                          </Link>
+                        </Col>
+                        <Col>
+                          <Button variant="link" onClick={ () =>
+                          {
+                            //deleteActiv(activ._id, index)
+                          } }>
+                            Delete
+                          </Button>
+                        </Col>
+                      </Row>
+                    }
                   </Card.Body>  
+
                 </Card>
               </Col>
             )
