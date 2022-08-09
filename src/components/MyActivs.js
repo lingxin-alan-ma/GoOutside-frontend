@@ -35,11 +35,12 @@ const MyActivs = ({
       .catch(e => {
         console.log(e);
       });
-  },[]);
+  },);
 
   useEffect(() => {
     retrieveActivs();
   },[activs]);
+
  
   return (
     <div className="App">     
