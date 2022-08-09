@@ -3,7 +3,6 @@ import ActivDataService from "../services/activs";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
-
 import S3 from 'react-aws-s3';
 import Upload from "./Upload";
 // window.Buffer = window.Buffer || require("buffer").Buffer;

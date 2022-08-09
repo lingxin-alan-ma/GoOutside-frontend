@@ -39,6 +39,7 @@ const ActivsList = ({
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
 
+
   const retrieveTags = useCallback(() => {
     ActivDataService.getTags()
       .then(response => {
@@ -235,7 +236,7 @@ const ActivsList = ({
                   <Link to={"/activs/"+activ._id}>
                     <Card.Img 
                       className="smallPoster" 
-                      src={activ.images}
+                      src={activ.images[0]}
                       alt={"poster not available"}
                       onError={event => {
                         event.target.src = noImageAvailable
