@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ActivDataService from "../services/activs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
 
@@ -10,14 +10,23 @@ import Upload from "./Upload";
 
 const AddActiv = ({ user }) => {
   const navigate = useNavigate();
-  let params = useParams();
+  const params = useParams();
+  const location=useLocation();
 
-  const [name, setName] = useState();
-  const [address, setAddress] = useState();
-  const [description, setDescription] = useState();
-  const [imageUrl, setImageUrl] = useState();
+  let editing = false;
+  let initialNameState = "";
+  let initialAddressState = "";
+  let initialDescriptionState = "";
+  let initialImageUrlState = "";
+  let initialTagState = "";
 
-  const [tag, setTag] = useState();
+  const [name, setName] = useState(initialNameState);
+  const [address, setAddress] = useState(initialAddressState);
+  const [description, setDescription] = useState(initialDescriptionState);
+  const [imageUrl, setImageUrl] = useState(initialImageUrlState);
+  const [tag, setTag] = useState(initialTagState);
+
+  if(location.state)
 
   const onChangeName = e => {
     setName(e.target.value);
