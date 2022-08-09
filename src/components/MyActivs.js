@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, Link } from "react-router-dom";
 import ActivDataService from "../services/activs";
-import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import "react-slideshow-image/dist/styles.css";
-import "./ActivsList.css";
+import "./MyActivs.css";
 
 const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
 
@@ -21,9 +21,9 @@ const MyActivs = ({
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
-  console.log("MyActive " + user);
-  console.log(user);
-  console.log(activs);
+  // console.log("MyActive " + user);
+  // console.log(user);
+  // console.log(activs);
  
   const retrieveActivs = useCallback(() => { 
     ActivDataService.getActivsByUser(user.googleId)
@@ -35,12 +35,11 @@ const MyActivs = ({
       .catch(e => {
         console.log(e);
       });
-  });
+  },[]);
 
   useEffect(() => {
     retrieveActivs();
-    console.log("mx");
-  },[user]);
+  },[activs]);
  
   return (
     <div className="App">     
@@ -53,7 +52,9 @@ const MyActivs = ({
         </Link>  
         </Button>      
         <Row className="activRow">
-          { activs.map((activ) => {
+        
+          { activs.map((activ, index) => {
+            
             return (
               <Col key={activ._id}>
                 <Card className="activsListCard">
@@ -88,7 +89,34 @@ const MyActivs = ({
                     </Card.Text>
                     <Card.Text className="activDescription">
                       {activ.description}
-                    </Card.Text>
+                    </Card.Text>         
+                    <Card.Link href="../myactiv">edit</Card.Link>
+                    
+                    <Button variant = "link" onClick = {()=>{
+                        var data = {
+                        activs_id: activ._id,
+                        user_id: user.googleId,                    
+                        }
+                        console.log(data);
+                        ActivDataService.deleteActivs(data)
+                        .then(response=>{
+                          console.log(activ);
+                          console.log(activs);
+                            setActivs((activs) => {
+                              activs.splice(index, 1);
+                              console.log(activs);
+                               return ({
+                                 ...activs
+                               })                            
+                              })
+                            })   
+                        .catch(e=>{
+                          console.log(e);
+                        })
+                      }
+                    }>Delete
+                    </Button> 
+                    
                   </Card.Body>  
                 </Card>
               </Col>
@@ -101,6 +129,5 @@ const MyActivs = ({
     </div>
   )
 }
-
 
 export default MyActivs;

@@ -38,9 +38,16 @@ class ActivDataService {
     return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, data);
   }
 
+  deleteActivs(data) {
+    return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, {data});
+    
+  }
+
   getActivsByUser(userId){
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/userId/${userId}`);
   }
+
+  
 }
 
 export default new ActivDataService();

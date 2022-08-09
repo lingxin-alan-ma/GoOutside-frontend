@@ -27,7 +27,6 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 function App() {
 
   const [user, setUser] = useState(null);
-  console.log(user);
   const [favorites, setFavorites] = useState([]);
 
   const addFavorite = (activId) => {
