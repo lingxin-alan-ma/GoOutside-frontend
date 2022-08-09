@@ -12,6 +12,7 @@ const Favorites = ({
   favorites, 
 }) => {
   const [activs, setActivs] = useState([]);
+  console.log(user);
   
   const getActivs = useCallback((ids) => {
     if (ids && ids.length > 0) {

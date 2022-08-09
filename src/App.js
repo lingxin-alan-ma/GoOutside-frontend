@@ -13,6 +13,7 @@ import AddActiv from './components/AddActiv';
 import ActivsList from "./components/ActivsList";
 import Activ from "./components/Activ";
 import Favorites from "./components/Favorites";
+import MyActivs from './components/MyActivs';
 import FavoriteDataService from "./services/favorites";
 
 import { DndProvider } from 'react-dnd'
@@ -26,6 +27,7 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 function App() {
 
   const [user, setUser] = useState(null);
+  console.log(user);
   const [favorites, setFavorites] = useState([]);
 
   const addFavorite = (activId) => {
@@ -109,6 +111,9 @@ function App() {
                     <Nav.Link as={Link} to={"/myactiv"}>
                       Add/Edit
                     </Nav.Link>
+                    <Nav.Link as={Link} to={"/user"}>
+                      My Activities
+                    </Nav.Link>
                   </ul>
                 ) : null}
               </Nav>
@@ -142,6 +147,20 @@ function App() {
           />
           <Route path={"/myactiv"} element={
             <AddActiv user={user} />}
+          />
+          <Route path={"/user"} element={
+            user ?
+            <MyActivs user={user}
+            addFavorite={addFavorite}
+            deleteFavorite={deleteFavorite}
+            favorites={favorites} />
+            :
+            <ActivsList
+                user={user}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                favorites={favorites}
+              />}
           />
           <Route path={"/activs/:id/review"} element={
             <AddReview user={user} />}

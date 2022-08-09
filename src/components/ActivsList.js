@@ -39,6 +39,7 @@ const ActivsList = ({
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
 
+
   const retrieveTags = useCallback(() => {
     ActivDataService.getTags()
       .then(response => {
