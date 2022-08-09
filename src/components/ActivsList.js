@@ -236,7 +236,7 @@ const ActivsList = ({
                   <Link to={"/activs/"+activ._id}>
                     <Card.Img 
                       className="smallPoster" 
-                      src={activ.images}
+                      src={activ.images[0]}
                       alt={"poster not available"}
                       onError={event => {
                         event.target.src = noImageAvailable

@@ -83,7 +83,7 @@ const DnDCard = ({ activ, index, moveCard }) => {
           <Card.Img 
             className="favoritesPoster" 
             // src={activ.images+"/100px180"}
-            src={activ.images}
+            src={activ.images[0]}
             alt={"poster not available"}
             onError={event => {
               event.target.src = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg"

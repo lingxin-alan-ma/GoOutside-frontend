@@ -68,7 +68,7 @@ const Favorites = ({
         <div className="favoritesPanel">
           {
             favorites && favorites.length > 0 ?
-              <span>Drag your favorites to rank them</span> 
+              <span>Drag your favorites to rank them, and click on images to view details</span> 
               :
               <span>You haven't chosen any favorites yet</span>
           }
