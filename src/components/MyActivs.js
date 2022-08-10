@@ -21,9 +21,9 @@ const MyActivs = ({
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
-  console.log("MyActive " + user);
-  console.log(user);
-  console.log(activs);
+  // console.log("MyActive " + user);
+  // console.log(user);
+  // console.log(activs);
  
   const retrieveActivs = useCallback(() => { 
     ActivDataService.getActivsByUser(user.googleId)
@@ -35,7 +35,7 @@ const MyActivs = ({
       .catch(e => {
         console.log(e);
       });
-  },);
+  },[activs]);
 
   useEffect(() => {
     retrieveActivs();
@@ -45,16 +45,14 @@ const MyActivs = ({
   return (
     <div className="App">     
       <Container className="main-container">  
-      <Button variant="light">  
-      
+      <Button variant="light">        
         <Link  to={"/myactiv"} style={{ textDecoration:'none'}}>
-        Upload new activities
-                              
+        Upload new activities                        
         </Link>  
         </Button>      
         <Row className="activRow">
-          { activs.map((activ) => {
-            return (
+          { activs == null ? alert("You are deleting your activity!") : activs.map((activ, index) => {           
+            return (              
               <Col key={activ._id}>
                 <Card className="activsListCard">
                   { user && (
@@ -110,14 +108,8 @@ const MyActivs = ({
                         console.log(data);
                         ActivDataService.deleteActivs(data)
                         .then(response=>{
-                          console.log(activ);
-                          console.log(activs);
                             setActivs((activs) => {
-                              activs.splice(index, 1);
-                              console.log(activs);
-                               return ({
-                                 ...activs
-                               })                            
+                              activs.splice(index, 1)                          
                               })
                             })   
                         .catch(e=>{
