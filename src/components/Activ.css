@@ -19,11 +19,11 @@ p.review {
 .bigPicture {
   /* float: right; */
   width: 100%;
-  max-height: 15rem; 
-  width: 30rem;
+  /* max-height: 15rem;  */
+  /* width: 30rem; */
   object-fit: "cover";
   margin-top: 1rem;
-  margin-left: 2rem; 
+  margin-left: 1rem; 
   align-items: center;
 }
 
@@ -32,6 +32,7 @@ p.review {
   /* margin-top: 20rem; */
   /* padding-top: 2rem; */
   padding-bottom: 1rem;
+  /* margin-left: .1rem; */
 }
 
 .map-container {
@@ -39,7 +40,7 @@ p.review {
   /* margin-left: -15em;
   margin-top: -4em; */
   /* padding-top: 3rem; */
-  width: 27rem;
+  width: 37em;
   height: 20rem;
   margin: 20px;
 }

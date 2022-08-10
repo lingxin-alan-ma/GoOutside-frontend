@@ -9,7 +9,8 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { BsStar, BsStarFill, BsTextCenter } from "react-icons/bs";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { Slide } from 'react-slideshow-image';
+// import { Slide } from 'react-slideshow-image';
+import SimpleImageSlider from "react-simple-image-slider";
 
 import "react-slideshow-image/dist/styles.css";
 import "./ActivsList.css";
@@ -113,7 +114,6 @@ const ActivsList = ({
     retrieveNextPage();
   }, [currentPage, retrieveNextPage]);
 
-
   // Other functions that are not depended on by useEffect
   const onChangeSearchName = e => {
     const searchName = e.target.value;
@@ -126,53 +126,44 @@ const ActivsList = ({
     console.log(searchTag);
   }
 
-  const slideProperties = {
-    duration: 5000,
-    transitionDuration: 500,
-    infinite: true,
-    indicators: true,
-    arrows: true,
-    pauseOnHover: true,
-  };
+  function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth, innerHeight};
+  }
 
-  const Slideshow = useCallback(() => {
-    return (
-      <div className="slide-container">
-        <Slide {...slideProperties}>
-          {images.map((each, index) => (
-            <img 
-              key={index} 
-              style={{ width: "100%", maxHeight: 500, objectFit: "cover" }} 
-              src={each} 
-              alt={"poster not available"}
-              onError={event => {
-                event.target.src = noImageAvailable
-                event.onerror = null
-              }}
-            />
-          ))}
-        </Slide>
-      </div>
-    );
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
   }, []);
 
   return (
     <div className="App">
-      <Slideshow />
-      {/* <Card.Body >
+      <div >
+        <SimpleImageSlider
+          width={windowSize.innerWidth}
+          height={600}
+          images={images}
+          showBullets={true}
+          showNavs={true}
+          autoPlay={true}
+          autoPlayDelay={6.0}
+        />
+      </div>
+      <Container className="main-container">
+        <Form>
         <Card.Text className="center-title">
           Explore a Bigger World
         </Card.Text>
-      </Card.Body> */}
-      <Container className="main-container">
-        <Form>
           <Row>
             <Col>
-              
               <Form.Group className="center-search">
-              <Card.Text className="center-title">
-                Explore a Bigger World
-              </Card.Text>
                 <Form.Control
                   type="text"
                   placeholder="Search by city, name, or activities"

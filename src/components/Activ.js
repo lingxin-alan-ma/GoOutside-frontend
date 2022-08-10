@@ -11,8 +11,11 @@ import moment from 'moment';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { Slide } from 'react-slideshow-image';
-// import { Slider } from 'react-animated-slider';
+import SimpleImageSlider from "react-simple-image-slider";
 // import Geocode from 'react-geocode';
+// import { FacebookShareButton, TwitterShareButton } from "react-share";
+// import { FacebookIcon, TwitterIcon } from "react-share";
+
 
 import "react-slideshow-image/dist/styles.css";
 import "./Activ.css";
@@ -52,9 +55,10 @@ const Activ = ({ user }) => {
           console.log(e);
         });
     }
-    getActiv(params.id)
+    getActiv(params.id);
   }, [params.id]);
   // console.log(activ.reviews);
+  console.log(activ.images);
 
   const deleteReview = (reviewId, index) => {
     let data = {
@@ -112,7 +116,7 @@ const Activ = ({ user }) => {
     <div>
       <Container>
         <Row >
-          <Col xs={12} sm={6} md={5} lg={5}>
+          <Col xs={12} sm={6} md={6} lg={6}>
             {/* <div className="poster">
               <Image
                 className="bigPicture"
@@ -125,27 +129,24 @@ const Activ = ({ user }) => {
                 }}
                 fluid />
             </div> */}
-            
-            <div className="ActivSlide-container">
-              <Slide {...SlideProperties}>
-                {activ.images.map((each, index) => (
-                  <img className="bigPicture"
-                    key={index} 
-                    // style={{ width: "100%", maxHeight: 500, maxWidth: 500, objectFit: "cover", marginTop: 20, marginLeft: 20 }} 
-                    src={each}
-                    alt={"poster not available"}
-                    onError={event => {
-                      event.target.src = noImageAvailable
-                      event.onerror = null
-                    }}
-                  />
-                ))}
-              </Slide>
+            <div className="bigPicture">
+              <SimpleImageSlider
+                width={600}
+                height={400}
+                // images={activ.images.map((each, index) => (
+                //   {url: each}
+                // ))}
+                images={activ.images}
+                showBullets={true}
+                showNavs={true}
+                autoPlay={true}
+                autoPlayDelay={5.0}
+              />
             </div>
 
             <div className="map">
             <LoadScript
-              googleMapsApiKey = {API_KEY}
+              // googleMapsApiKey = {API_KEY}
             >
               <GoogleMap
                 mapContainerClassName="map-container"
