@@ -21,16 +21,11 @@ const MyActivs = ({
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
-  // console.log("MyActive " + user);
-  // console.log(user);
-  // console.log(activs);
  
   const retrieveActivs = useCallback(() => { 
     ActivDataService.getActivsByUser(user.googleId)
       .then(response => {
-        //console.log(response.data);
-        setActivs(response.data);
-        //console.log(activs);        
+        setActivs(response.data);        
       })
       .catch(e => {
         console.log(e);
