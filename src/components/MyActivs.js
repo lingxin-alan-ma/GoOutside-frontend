@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsPencil, BsPenFill, BsTrash } from "react-icons/bs";
 
 import "react-slideshow-image/dist/styles.css";
 import "./ActivsList.css";
@@ -108,18 +109,21 @@ const MyActivs = ({
                           }}
                           state = {{
                             currentActiv: activ
-                          }} style={{ textDecoration:'none'}} color='white'>
+                          }} style={{ textDecoration:'none', color:'white' }} >
                             <Button >
                               Edit
+                              <BsPencil style={{ marginLeft: "10", marginBottom: "3" }}/>
                             </Button>
                           </Link>  
                         </Col>
                         <Col>
-                        <Button  variant="danger" onClick = {()=>{
-                          deleteActiv(activ, index); 
-                        }
-                        }>Delete
-                        </Button>
+                          <Button variant="danger" onClick = {()=>{
+                            deleteActiv(activ, index); 
+                          }
+                          }>
+                            Delete
+                          <BsTrash style={{ marginLeft: "10", marginBottom: "3"}}/>
+                          </Button>
                         </Col>
                       </Row>
                     }

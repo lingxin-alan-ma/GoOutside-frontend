@@ -10,12 +10,15 @@ import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { Slide } from 'react-slideshow-image';
+// import { Slide } from 'react-slideshow-image';
 import SimpleImageSlider from "react-simple-image-slider";
+import { Rating } from 'react-simple-star-rating'
+
 // import Geocode from 'react-geocode';
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 // import { FacebookIcon, TwitterIcon } from "react-share";
-
+// import FaFacebook from "react-icons/lib/fa/facebook";
+// import { ShareButton } from "react-custom-share";
 
 import "react-slideshow-image/dist/styles.css";
 import "./Activ.css";
@@ -103,14 +106,21 @@ const Activ = ({ user }) => {
     return center;
   }
 
-  const SlideProperties = {
-    duration: 5000,
-    transitionDuration: 500,
-    infinite: true,
-    indicators: true,
-    arrows: false,
-    pauseOnHover: true,
-  };
+  // const SlideProperties = {
+  //   duration: 5000,
+  //   transitionDuration: 500,
+  //   infinite: true,
+  //   indicators: true,
+  //   arrows: false,
+  //   pauseOnHover: true,
+  // };
+
+  const [rating, setRating] = useState(0) 
+
+  const handleRating = (rate: number) => {
+    setRating(rate)
+    // other logic
+  }
 
   return (
     <div>
@@ -162,6 +172,9 @@ const Activ = ({ user }) => {
             <Card>
               <Card.Header as="h5">{activ.name}</Card.Header>
               <Card.Body>
+                <Rating onClick={handleRating} ratingValue={rating} 
+                  /* Available Props */ 
+                />
                 <Card.Text style={{color: "blue"}}>
                   {activ.address}
                 </Card.Text>
@@ -180,12 +193,12 @@ const Activ = ({ user }) => {
                   {activ.tags}
                   {/* {activ.coord} */}
                 </Card.Text>  
-                <div>
+                {/* <div>
                   <FacebookShareButton
-                    url={"https://peing.net/ja/"}
-                    quote={"フェイスブックはタイトルが付けれるようです"}
+                    url={"h"}
+                    quote={""}
                     hashtag={"#hashtag"}
-                    description={"aiueo"}
+                    description={""}
                     className="Demo__some-network__share-button"
                   >
                     <FacebookIcon size={32} round /> Facebookでshare
@@ -193,13 +206,13 @@ const Activ = ({ user }) => {
                   <br />
                   <TwitterShareButton
                     title={"test"}
-                    url={"https://peing.net/ja/"}
+                    url={""}
                     hashtags={["hashtag1", "hashtag2"]}
                   >
                     <TwitterIcon size={32} round />
-                    Twitterでもshare
+                    Twitter share
                   </TwitterShareButton>
-                </div>
+                </div> */}
                 
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
