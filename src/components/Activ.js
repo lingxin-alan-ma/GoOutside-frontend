@@ -168,7 +168,7 @@ const Activ = ({ user }) => {
                 <Card.Text>
                   {activ.description}
                 </Card.Text>
-                <Card.Text className="activTags" style={{color: "blue"}}>
+                <Card.Text className="activTags" style={{color: "green", fontFamily: "Architects Daughter", fontSize: "1.2em", fontWeight: "600"}}>
                   {/* Tags: { activ.tags.map((tag, i) => {
                     return (
                       <option value={tag}
@@ -180,6 +180,27 @@ const Activ = ({ user }) => {
                   {activ.tags}
                   {/* {activ.coord} */}
                 </Card.Text>  
+                <div>
+                  <FacebookShareButton
+                    url={"https://peing.net/ja/"}
+                    quote={"フェイスブックはタイトルが付けれるようです"}
+                    hashtag={"#hashtag"}
+                    description={"aiueo"}
+                    className="Demo__some-network__share-button"
+                  >
+                    <FacebookIcon size={32} round /> Facebookでshare
+                  </FacebookShareButton>
+                  <br />
+                  <TwitterShareButton
+                    title={"test"}
+                    url={"https://peing.net/ja/"}
+                    hashtags={["hashtag1", "hashtag2"]}
+                  >
+                    <TwitterIcon size={32} round />
+                    Twitterでもshare
+                  </TwitterShareButton>
+                </div>
+                
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
                     Add Review
