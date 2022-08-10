@@ -32,6 +32,24 @@ const MyActivs = ({
       });
   },[activs]);
 
+  const deleteActiv = (activ, index) => {
+    var data = {
+      activ_id: activ._id,
+      user_id: user.googleId,                    
+      }
+      console.log(data);
+      ActivDataService.deleteActivs(data)
+      .then(response=>{
+          setActivs((activs) => {
+            activs.splice(index, 1)                          
+            })
+          })   
+      .catch(e=>{
+        console.log(e);
+      })
+
+  }
+
   useEffect(() => {
     retrieveActivs();
   },[activs]);
@@ -84,35 +102,24 @@ const MyActivs = ({
                     </Card.Text>
                     { user && user.googleId === activ.user_id &&
                       <Row>
-                        <Col>
-                          <Link to={{
+                        <Col>                        
+                        <Link to={{
                             pathname: "/myactiv"
                           }}
                           state = {{
                             currentActiv: activ
-                          }} >
-                            Edit
-                          </Link>
+                          }} style={{ textDecoration:'none'}} color='white'>
+                            <Button >
+                              Edit
+                            </Button>
+                          </Link>  
                         </Col>
                         <Col>
-                        <Button variant = "link" onClick = {()=>{
-                        var data = {
-                        activs_id: activ._id,
-                        user_id: user.googleId,                    
+                        <Button  variant="danger" onClick = {()=>{
+                          deleteActiv(activ, index); 
                         }
-                        console.log(data);
-                        ActivDataService.deleteActivs(data)
-                        .then(response=>{
-                            setActivs((activs) => {
-                              activs.splice(index, 1)                          
-                              })
-                            })   
-                        .catch(e=>{
-                          console.log(e);
-                        })
-                      }
-                    }>Delete
-                    </Button>
+                        }>Delete
+                        </Button>
                         </Col>
                       </Row>
                     }
