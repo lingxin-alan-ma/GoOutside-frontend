@@ -237,7 +237,7 @@ const ActivsList = ({
                   </Link>
                   <Card.Body className="activCardBody">
                     <Card.Title> {activ.name}</Card.Title>
-                    <Card.Text className="activTags" style={{color: "blue"}}>
+                    <Card.Text className="activTags" style={{color: "green", fontFamily: "Architects Daughter", fontSize: "1.2em"}}>
                       {/* Tags: { activ.tags.map((tag, i) => {
                         return (
                           <option value={tag}

@@ -21,9 +21,6 @@ const AddActiv = ({ user }) => {
   let initialTagState = "";
 
   
-
-  console.log(location.state);
-  console.log(params.id);
   if(location.state && location.state.currentActiv){
     editing = true;
     initialNameState = location.state.currentActiv.name;
@@ -40,7 +37,6 @@ const AddActiv = ({ user }) => {
   const [imageUrl, setImageUrl] = useState(initialImageUrlState);
   const [tag, setTag] = useState(initialTagState);
   
-  console.log(tag);
 
   const onChangeName = e => {
     setName(e.target.value);
@@ -73,7 +69,7 @@ const AddActiv = ({ user }) => {
       data.activ_id = location.state.currentActiv._id;
       ActivDataService.updateActiv(data)
         .then(response => {
-          navigate("/activs/"+params.id);
+          navigate("/activs/"+location.state.currentActiv._id);
         })
         .catch(e => {
           console.log(e);
@@ -82,8 +78,8 @@ const AddActiv = ({ user }) => {
     else {
       ActivDataService.creatActiv(data)
       .then(response => {
-        console.log(params);
-        //navigate("/activs/" + params.id)
+        console.log(response);
+        navigate("/activs/")
       })
       .catch(e => {
         console.log(e);
