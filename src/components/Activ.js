@@ -8,11 +8,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
-import { GoogleMap, LoadScript, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { Slide } from 'react-slideshow-image';
-
-import Geocode from 'react-geocode';
+// import { Slider } from 'react-animated-slider';
+// import Geocode from 'react-geocode';
 
 import "react-slideshow-image/dist/styles.css";
 import "./Activ.css";
@@ -99,61 +99,53 @@ const Activ = ({ user }) => {
     return center;
   }
 
-  const activSlideProperties = {
-    duration: 4000,
+  const SlideProperties = {
+    duration: 5000,
     transitionDuration: 500,
     infinite: true,
-    // indicators: true,
-    arrows: true,
+    indicators: true,
+    arrows: false,
     pauseOnHover: true,
   };
-
-  const ActivSlideshow = useCallback((images) => {
-    return (
-      <div className="slide-container">
-        <Slide {...activSlideProperties}>
-          {images.map((each, index) => (
-            <img 
-              key={index} 
-              style={{ width: "100%", maxHeight: 200, objectFit: "cover" }} 
-              src={each} 
-              alt={"poster not available"}
-              onError={event => {
-                event.target.src = noImageAvailable
-                event.onerror = null
-              }}
-            />
-          ))}
-        </Slide>
-      </div>
-    );
-  }, []);
 
   return (
     <div>
       <Container>
-        <Row>
-          <Col>
-            {/* <ActivSlideshow 
-              images={activ.images}
-            /> */}
-            <div className="poster">
-              
+        <Row >
+          <Col xs={12} sm={6} md={5} lg={5}>
+            {/* <div className="poster">
               <Image
                 className="bigPicture"
-                // src={activ.images[0]}
-                src={activ.images}
+                src={activ.images[0]}
+                // src={activ.images}
                 alt={"images not available"}
                 onError={event => {
                   event.target.src = noImageAvailable
                   event.onerror = null
                 }}
                 fluid />
+            </div> */}
+            
+            <div className="ActivSlide-container">
+              <Slide {...SlideProperties}>
+                {activ.images.map((each, index) => (
+                  <img className="bigPicture"
+                    key={index} 
+                    // style={{ width: "100%", maxHeight: 500, maxWidth: 500, objectFit: "cover", marginTop: 20, marginLeft: 20 }} 
+                    src={each}
+                    alt={"poster not available"}
+                    onError={event => {
+                      event.target.src = noImageAvailable
+                      event.onerror = null
+                    }}
+                  />
+                ))}
+              </Slide>
             </div>
 
             <div className="map">
             <LoadScript
-              // googleMapsApiKey = {API_KEY}
+              googleMapsApiKey = {API_KEY}
             >
               <GoogleMap
                 mapContainerClassName="map-container"
@@ -169,6 +161,9 @@ const Activ = ({ user }) => {
             <Card>
               <Card.Header as="h5">{activ.name}</Card.Header>
               <Card.Body>
+                <Card.Text style={{color: "blue"}}>
+                  {activ.address}
+                </Card.Text>
                 <Card.Text>
                   {activ.description}
                 </Card.Text>
@@ -231,8 +226,8 @@ const Activ = ({ user }) => {
             
           </Col>
         </Row>
-        <Row>
-          <Col>
+        {/* <Row> */}
+          {/* <Col> */}
             {/* <LoadScript
               googleMapsApiKey = {API_KEY}
             >
@@ -244,8 +239,8 @@ const Activ = ({ user }) => {
                 <Marker position={getCenter(activ.coord)}/>
               </GoogleMap>
             </LoadScript> */}
-          </Col>
-        </Row>
+          {/* </Col> */}
+        {/* </Row> */}
       </Container>
     </div>
   )
