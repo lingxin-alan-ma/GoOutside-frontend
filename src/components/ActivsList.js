@@ -236,6 +236,17 @@ const ActivsList = ({
                   </Link>
                   <Card.Body className="activCardBody">
                     <Card.Title> {activ.name}</Card.Title>
+                    <div style={{display: 'flex'}}>
+                      <BsStarFill style={{fill: "orange"}}/>    
+                      <Card.Text style={{fontSize: '.75em', paddingLeft:'.3em'}}>
+                        {activ.rating ? activ.rating[0] : 0}
+                        {' '}
+                        {'('}
+                        {activ.rating ? activ.rating[1] : 0}
+                        {')'}
+                      </Card.Text>
+                    </div>
+                      
                     <Card.Text className="activTags" style={{color: "green", fontFamily: "Architects Daughter", fontSize: "1.2em"}}>
                       {/* Tags: { activ.tags.map((tag, i) => {
                         return (

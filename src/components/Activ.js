@@ -198,7 +198,6 @@ const Activ = ({
                     {')'}
                   </Card.Text>
                 </div>
-                
               </Card.Header>
               <Card.Body>
                 {user &&
