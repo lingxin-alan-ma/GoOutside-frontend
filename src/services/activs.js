@@ -10,10 +10,6 @@ class ActivDataService {
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs?${by}=${query}&page=${page}`);
   }
 
-  getRatings() {
-    return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/ratings`);
-  }
-
   getTags() {
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/tags`);
   }
@@ -43,15 +39,13 @@ class ActivDataService {
   }
 
   deleteActivs(data) {
-    return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, {data});
-    
+    return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, {data});  
   }
 
   getActivsByUser(userId){
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/userId/${userId}`);
   }
 
-  
 }
 
 export default new ActivDataService();
