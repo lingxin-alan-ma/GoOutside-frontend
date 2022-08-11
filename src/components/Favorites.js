@@ -21,6 +21,9 @@ const Favorites = ({
         })
         .catch(e => {
           console.log(e);
+          if (e.request) {
+            console.log('The activity no longer exist');
+          }
         })
     }
   }, [])

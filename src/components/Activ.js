@@ -42,6 +42,7 @@ const Activ = ({
   deleteFavorite
 }) => {
   
+  let editingRating = false;
   let params = useParams();
 
   // const [user, setUser] = useState(null);
@@ -116,7 +117,7 @@ const Activ = ({
 
   const handleRating = (rate) => {
     setRating(rate)
-    // other logic
+    // TODO
   }
 
   return (

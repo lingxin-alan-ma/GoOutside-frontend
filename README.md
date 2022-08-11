@@ -75,6 +75,9 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 ### Delete activity page
 ![delete activity](screenshots/deleteactivity.png)
 
+## Notes
+* Star ratings are arbitrary and for demo purpose only
+  
 
 #
 # Getting Started with Create React App
