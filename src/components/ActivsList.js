@@ -39,7 +39,7 @@ const ActivsList = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
-
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
   const retrieveTags = useCallback(() => {
     ActivDataService.getTags()
@@ -131,7 +131,6 @@ const ActivsList = ({
     return {innerWidth, innerHeight};
   }
 
-  const [windowSize, setWindowSize] = useState(getWindowSize());
   
   useEffect(() => {
     function handleWindowResize() {

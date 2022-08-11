@@ -143,7 +143,13 @@ function App() {
             />}
           />
           <Route path={"/activs/:id/"} element={
-            <Activ user={user} />}
+            // <Activ user={user} />}
+            <Activ 
+              user={user}
+              addFavorite={addFavorite}
+              deleteFavorite={deleteFavorite}
+              favorites={favorites}
+            />}
           />
           <Route path={"/myactiv"} element={
             <AddActiv user={user} />}

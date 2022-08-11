@@ -11,7 +11,7 @@ import moment from 'moment';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 // import { Slide } from 'react-slideshow-image';
-import SimpleImageSlider from "react-simple-image-slider";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Rating } from 'react-simple-star-rating'
@@ -34,8 +34,13 @@ const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-u
 
 const API_KEY=process.env.REACT_APP_GOOGLE_API_KEY;
 
-const Activ = ({ user }) => {
-
+const Activ = ({ 
+  user, 
+  favorites,
+  addFavorite,
+  deleteFavorite
+}) => {
+  
   let params = useParams();
 
   // const [user, setUser] = useState(null);
@@ -130,8 +135,18 @@ const Activ = ({ user }) => {
                 }}
                 fluid />
             </div> */}
-
-            <AliceCarousel 
+            <div>
+              { user && (
+                  favorites.includes(activ._id) ?
+                  <BsHeartFill className="heart2 heartFill" onClick={() => {
+                    deleteFavorite(activ._id);
+                  }}/>
+                  :
+                  <BsHeart className="heart2 heartEmpty" onClick={() => {
+                    addFavorite(activ._id);
+                  }}/>
+              ) }
+              <AliceCarousel 
               autoPlay={true} 
               autoPlayInterval={5000}
               fadeOutAnimation={true}
@@ -146,7 +161,10 @@ const Activ = ({ user }) => {
                       event.onerror = null
                     }} />
                 ))}
-            />
+              />
+              
+            </div>
+            
 
             <div className="map">
             <LoadScript

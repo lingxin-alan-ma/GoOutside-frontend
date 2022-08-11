@@ -19,6 +19,15 @@ p.review {
   padding-right: 1rem;
 }
 
+.heart2 {
+  padding-top: 1.5em;
+  width: 5em;
+  height: 3.5em;
+  position: absolute;
+  filter: drop-shadow(1px 2px 3px black);
+  z-index: 5;
+}
+
 .bigPicture {
   /* float: right; */
   width: 100%;
