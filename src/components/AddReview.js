@@ -4,6 +4,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import { Rating } from 'react-simple-star-rating'
 
 const AddReview = ({ user }) => {
   const navigate = useNavigate()
@@ -56,11 +57,35 @@ const AddReview = ({ user }) => {
     }
   }
 
+  const [rating, setRating] = useState(0) 
+
+  const handleRating = (rate) => {
+    // setRating(rate)
+    // TODO
+    var data = {
+      rating: rate 
+    }
+    ActivDataService.updateActivRating(data)
+      .then(response => {
+        setRating(rate)
+      })
+      .catch(e=>{
+        console.log(e);
+      })
+  }
+
   return (
     <Container className="main-container">
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label>{ editing ? "Edit" : "Create" } Review</Form.Label>
+            <Form.Label style={{fontFamily: "Dosis", fontSize: "1.5rem", fontWeight: "bold"}}>{ editing ? "Edit" : "Create" } Review</Form.Label>
+            <br></br>
+            <Rating style={{marginBottom: '1rem'}}
+              onClick={handleRating} 
+              ratingValue={rating} 
+              emptyColor={'white'}
+              size={25}
+            />
             <Form.Control
               as="textarea"
               type="text"

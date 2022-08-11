@@ -42,7 +42,7 @@ const Activ = ({
   deleteFavorite
 }) => {
   
-  let editingRating = false;
+  let rated = false;
   let params = useParams();
 
   // const [user, setUser] = useState(null);
@@ -113,13 +113,6 @@ const Activ = ({
     return center;
   }
 
-  const [rating, setRating] = useState(0) 
-
-  const handleRating = (rate) => {
-    setRating(rate)
-    // TODO
-  }
-
   return (
     <div>
       <Container>
@@ -168,7 +161,7 @@ const Activ = ({
           
             <div className="map">
             <LoadScript
-              // googleMapsApiKey = {API_KEY}
+              googleMapsApiKey = {API_KEY}
             >
               <GoogleMap
                 mapContainerClassName="map-container"
@@ -201,11 +194,10 @@ const Activ = ({
                 </div>
               </Card.Header>
               <Card.Body>
-                {user &&
+                {/* {user &&
                   <Rating onClick={handleRating} ratingValue={rating} 
-                    /* Available Props */ 
                   />
-                }
+                } */}
                 <Card.Text style={{color: "blue"}}>
                   {activ.address}
                 </Card.Text>
