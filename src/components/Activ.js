@@ -61,7 +61,12 @@ const Activ = ({ user }) => {
     getActiv(params.id);
   }, [params.id]);
   // console.log(activ.reviews);
-  console.log(activ.images);
+  // console.log(activ.images);
+  // const imageArray = activ.images.map((each, index) => (
+  //   {url: each}
+  // ));
+  const imageArray = activ.images;
+  console.log(imageArray);
 
   const deleteReview = (reviewId, index) => {
     let data = {
@@ -117,7 +122,7 @@ const Activ = ({ user }) => {
 
   const [rating, setRating] = useState(0) 
 
-  const handleRating = (rate: number) => {
+  const handleRating = (rate) => {
     setRating(rate)
     // other logic
   }
@@ -146,7 +151,8 @@ const Activ = ({ user }) => {
                 // images={activ.images.map((each, index) => (
                 //   {url: each}
                 // ))}
-                images={activ.images}
+                // images={activ.images}
+                images={imageArray}
                 showBullets={true}
                 showNavs={true}
                 autoPlay={true}

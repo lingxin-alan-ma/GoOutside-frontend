@@ -108,9 +108,9 @@ function App() {
                     <Nav.Link as={Link} to={"/favorites"}>
                       Favorites
                     </Nav.Link>
-                    <Nav.Link as={Link} to={"/myactiv"}>
+                    {/* <Nav.Link as={Link} to={"/myactiv"}>
                       Add/Edit
-                    </Nav.Link>
+                    </Nav.Link> */}
                     <Nav.Link as={Link} to={"/user"}>
                       My Activities
                     </Nav.Link>
@@ -156,11 +156,11 @@ function App() {
             favorites={favorites} />
             :
             <ActivsList
-                user={user}
-                addFavorite={addFavorite}
-                deleteFavorite={deleteFavorite}
-                favorites={favorites}
-              />}
+              user={user}
+              addFavorite={addFavorite}
+              deleteFavorite={deleteFavorite}
+              favorites={favorites}
+            />}
           />
           <Route path={"/activs/:id/review"} element={
             <AddReview user={user} />}
