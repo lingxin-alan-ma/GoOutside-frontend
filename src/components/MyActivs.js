@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BsPencil, BsPenFill, BsTrash } from "react-icons/bs";
+import { BsPlusLg } from "react-icons/bs";
 
 import "react-slideshow-image/dist/styles.css";
 import "./ActivsList.css";
@@ -59,11 +60,16 @@ const MyActivs = ({
   return (
     <div className="App">     
       <Container className="main-container">  
-      <Button variant="light">        
+             
         <Link  to={"/myactiv"} style={{ textDecoration:'none'}}>
-        Upload new activities                        
-        </Link>  
-        </Button>      
+        <Button variant="light"> 
+        <BsPlusLg style={{ marginRight: "10", marginBottom: "3"}}/> 
+        Upload new activities 
+        
+        </Button>                       
+        </Link> 
+        
+              
         <Row className="activRow">
           { activs == null ? alert("You are deleting your activity!") : activs.map((activ, index) => {           
             return (              
@@ -109,8 +115,8 @@ const MyActivs = ({
                           }}
                           state = {{
                             currentActiv: activ
-                          }} style={{ textDecoration:'none', color:'white' }} >
-                            <Button >
+                          }} style={{ textDecoration:'none'}} >
+                            <Button variant="secondary" >
                               Edit
                               <BsPencil style={{ marginLeft: "10", marginBottom: "3" }}/>
                             </Button>
@@ -118,7 +124,8 @@ const MyActivs = ({
                         </Col>
                         <Col>
                           <Button variant="danger" onClick = {()=>{
-                            deleteActiv(activ, index); 
+                            deleteFavorite(activ._id);
+                            deleteActiv(activ, index);                          
                           }
                           }>
                             Delete
