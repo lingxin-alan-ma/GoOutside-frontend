@@ -15,6 +15,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Rating } from 'react-simple-star-rating'
+import StarRatings from 'react-star-ratings';
 
 // import Geocode from 'react-geocode';
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
@@ -162,10 +163,8 @@ const Activ = ({
                     }} />
                 ))}
               />
-              
             </div>
-            
-
+          
             <div className="map">
             <LoadScript
               // googleMapsApiKey = {API_KEY}
@@ -182,11 +181,31 @@ const Activ = ({
           </Col>
           <Col>
             <Card>
-              <Card.Header as="h5">{activ.name}</Card.Header>
+              <Card.Header as="h5" style={{fontSize: '1.5em'}}>
+                {activ.name}
+                <div style={{display: 'flex'}}>
+                  <StarRatings
+                    rating={
+                      activ.rating ? activ.rating[0] : 0
+                    }
+                    starDimension="1.5rem"
+                    starSpacing=".1rem"
+                    starRatedColor="orange"
+                  />
+                  <Card.Text style={{fontSize: '.75em', paddingTop: '.55em'}}>
+                    {'('}
+                    {activ.rating ? activ.rating[1] : 0}
+                    {')'}
+                  </Card.Text>
+                </div>
+                
+              </Card.Header>
               <Card.Body>
-                <Rating onClick={handleRating} ratingValue={rating} 
-                  /* Available Props */ 
-                />
+                {user &&
+                  <Rating onClick={handleRating} ratingValue={rating} 
+                    /* Available Props */ 
+                  />
+                }
                 <Card.Text style={{color: "blue"}}>
                   {activ.address}
                 </Card.Text>

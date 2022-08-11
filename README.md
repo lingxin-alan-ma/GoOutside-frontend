@@ -50,6 +50,31 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 ### Add new activity page
 ![addnewactivity](screenshots/addnewactivity.png)
 
+## #Iter2:
+### Heroku App frontend: https://gooutside-frontend.herokuapp.com
+### Heroku App backend: https://gooutsides.herokuapp.com 
+
+### Team member contribution:
+* Everyone contributed equally amount.
+* In addition to contributions made on last iter, everyone is involved in overal debugging.
+* Each team member's concentrations are as follows:
+  * Cuiqi focuses on ...
+  * Lingxin focuses on ... 
+  * Xiao focuses on ...
+
+## Current Screenshots
+### Front page
+![frontpage 3](screenshots/frontpage_3.png) 
+![frontpage 4](screenshots/frontpage_4.png)
+### Favorites page
+![favorites 2](screenshots/favorites2.png)
+### My Activity page
+![my activity](screenshots/myactivity.png)
+### Add activity page
+![add activity](screenshots/addactivity.png)
+### Delete activity page
+![delete activity](screenshots/deleteactivity.png)
+
 
 #
 # Getting Started with Create React App
