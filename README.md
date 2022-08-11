@@ -56,11 +56,11 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 
 ### Team member contribution:
 * Everyone contributed equally amount.
-* In addition to contributions made on last iter, everyone is involved in overal debugging.
+* In addition to contributions made on last iter, everyone is engaged in overall debugging.
 * Each team member's concentrations are as follows:
-  * Cuiqi focuses on ...
-  * Lingxin focuses on ... 
-  * Xiao focuses on ...
+  * Cuiqi focused on implementing activity editing, designing component showing coordinate array and image status, and Implementing getting coordinate and deleting images.
+  * Lingxin focused on implementing slideshow and maps with location display in activity page, displaying star rating on each activity, website layout with overall styling, and updating readme. 
+  * Xiao focused on implementing "My activities" page, including display of activities and delete activity function. Added getActivityByUserId and updateRating function in backend.
 
 ## Current Screenshots
 ### Front page
@@ -68,6 +68,10 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 ![frontpage 4](screenshots/frontpage_4.png)
 ### Favorites page
 ![favorites 2](screenshots/favorites2.png)
+### Activity page
+![activity](screenshots/activitypage.png)
+### Add review page
+![create review](screenshots/createreview.png)
 ### My Activity page
 ![my activity](screenshots/myactivity.png)
 ### Add activity page
