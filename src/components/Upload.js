@@ -57,7 +57,7 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
         <input type="file" onChange={handleFileInput}/>
         <br></br>
         <button onClick={() => uploadFile(selectedFile)}> Upload </button>
-        {ImageUrl.map((url) => {
+        {ImageUrl && ImageUrl.map((url) => {
           return (
             <FileHeader url={url} deleteFile={deleteFile}></FileHeader>
           )
