@@ -1,7 +1,7 @@
-.frontPageImgs {
-  width: 100%;
+/* .front-page-slider ul li img {
+  width: 100%!important;
   object-fit: cover;
-}
+} */
 
 /* .rsis-image {
   background-size: cover!important;
@@ -9,22 +9,23 @@
 } */
 
 .center-title {
-  font-family: 'Yusei Magic', cursive;
-  text-shadow: .1em .1em .15em #ababab;
+  /* font-family: 'Yusei Magic', cursive; */
+  font-family: 'Aclonica', cursive;
+  text-shadow: .1em .1em .15em greenyellow;
   font-size: 4.5rem;
-  /* font-weight: bolder; */
   font-weight: bolder;
   position: absolute;
   /* display: flex; */
   text-align: center;
-  color: lemonchiffon; 
+  color: lemonchiffon;
+  /* color: greenyellow;  */
   /* margin-left: 1.3em;
   margin-top: -2.5em; */
   left: 50%;
-  margin-left: -5.2em;
+  margin-left: -6.2em;
   margin-top: -6.25em;
-  -webkit-text-stroke-width: .05px;
-  -webkit-text-stroke-color: #555;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: darkgreen;
 }
 
 .center-search {

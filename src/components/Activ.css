@@ -10,10 +10,13 @@ p.review {
   white-space: pre-line;
 }
 
-.ActivSlide-container {
-  height: 600px;
-  margin: 10px;
-  max-height: 18rem;
+.alice-carousel ul li img{
+  height: 25rem;
+  width: 100%;
+  object-fit: cover;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .bigPicture {

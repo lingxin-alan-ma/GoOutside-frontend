@@ -12,6 +12,8 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 // import { Slide } from 'react-slideshow-image';
 import SimpleImageSlider from "react-simple-image-slider";
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 import { Rating } from 'react-simple-star-rating'
 
 // import Geocode from 'react-geocode';
@@ -60,13 +62,6 @@ const Activ = ({ user }) => {
     }
     getActiv(params.id);
   }, [params.id]);
-  // console.log(activ.reviews);
-  // console.log(activ.images);
-  // const imageArray = activ.images.map((each, index) => (
-  //   {url: each}
-  // ));
-  const imageArray = activ.images;
-  console.log(imageArray);
 
   const deleteReview = (reviewId, index) => {
     let data = {
@@ -111,15 +106,6 @@ const Activ = ({ user }) => {
     return center;
   }
 
-  // const SlideProperties = {
-  //   duration: 5000,
-  //   transitionDuration: 500,
-  //   infinite: true,
-  //   indicators: true,
-  //   arrows: false,
-  //   pauseOnHover: true,
-  // };
-
   const [rating, setRating] = useState(0) 
 
   const handleRating = (rate) => {
@@ -131,7 +117,7 @@ const Activ = ({ user }) => {
     <div>
       <Container>
         <Row >
-          <Col xs={12} sm={6} md={6} lg={6}>
+          <Col xs={12} sm={12} md={9} lg={6}>
             {/* <div className="poster">
               <Image
                 className="bigPicture"
@@ -144,21 +130,23 @@ const Activ = ({ user }) => {
                 }}
                 fluid />
             </div> */}
-            <div className="bigPicture">
-              <SimpleImageSlider
-                width={600}
-                height={400}
-                // images={activ.images.map((each, index) => (
-                //   {url: each}
-                // ))}
-                // images={activ.images}
-                images={imageArray}
-                showBullets={true}
-                showNavs={true}
-                autoPlay={true}
-                autoPlayDelay={5.0}
-              />
-            </div>
+
+            <AliceCarousel 
+              autoPlay={true} 
+              autoPlayInterval={5000}
+              fadeOutAnimation={true}
+              mouseTrackingEnabled={true}
+              disableAutoPlayOnAction={true}
+              items={activ.images.map((each, index) => (
+                  <img 
+                    src={each}
+                    alt={"images not available"}
+                    onError={event => {
+                      event.target.src = noImageAvailable
+                      event.onerror = null
+                    }} />
+                ))}
+            />
 
             <div className="map">
             <LoadScript

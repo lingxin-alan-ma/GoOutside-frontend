@@ -146,7 +146,7 @@ const ActivsList = ({
   return (
     <div className="App">
       <div >
-        <SimpleImageSlider
+        <SimpleImageSlider className="front-page-slider"
           width={windowSize.innerWidth}
           height={600}
           images={images}
