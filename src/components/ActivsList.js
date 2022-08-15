@@ -157,11 +157,11 @@ const ActivsList = ({
       </div>
       <Container className="main-container">
         <Form>
-        <Card.Text className="center-title">
-          Explore a Bigger World
-        </Card.Text>
           <Row>
             <Col>
+              <div className="center-title">
+                Explore a Bigger World
+              </div>
               <Form.Group className="center-search">
                 <Form.Control
                   type="text"
@@ -272,18 +272,6 @@ const ActivsList = ({
           })}
         </Row>
         <br />
-        {/* <Card.Body style={{color: "white", display: "flex"}}>
-        <Card.Text >
-          Showing page: { currentPage + 1 }.
-        </Card.Text>
-        
-        <Button className="btn-secondary" style={{color: "lightgreen", alignItems: "center"}}
-          variant="link"
-          onClick={() => { setCurrentPage(currentPage + 1)} }
-        >
-          Get next { entriesPerPage } results
-        </Button>
-        </Card.Body> */}
         Showing page: { currentPage + 1 }.
         <Button
           variant="link"
@@ -295,6 +283,5 @@ const ActivsList = ({
     </div>
   )
 }
-
 
 export default ActivsList;

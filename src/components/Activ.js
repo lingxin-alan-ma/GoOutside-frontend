@@ -3,7 +3,7 @@ import ActivDataService from '../services/activs';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
+// import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
