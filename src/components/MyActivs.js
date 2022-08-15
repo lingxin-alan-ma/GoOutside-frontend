@@ -56,20 +56,15 @@ const MyActivs = ({
     retrieveActivs();
   },[activs]);
 
- 
   return (
     <div className="App">     
       <Container className="main-container">  
-             
         <Link  to={"/myactiv"} style={{ textDecoration:'none'}}>
-        <Button variant="light"> 
-        <BsPlusLg style={{ marginRight: "10", marginBottom: "3"}}/> 
-        Upload new activities 
-        
-        </Button>                       
-        </Link> 
-        
-              
+          <Button variant="light"> 
+            <BsPlusLg style={{ marginRight: "10", marginBottom: "3"}}/> 
+            Upload new activities 
+          </Button>                       
+        </Link>  
         <Row className="activRow">
           { activs == null ? alert("You are deleting your activity!") : activs.filter(activ => !activ.hide).map((activ, index) => {           
             return (              
