@@ -71,7 +71,7 @@ const MyActivs = ({
         
               
         <Row className="activRow">
-          { activs == null ? alert("You are deleting your activity!") : activs.map((activ, index) => {           
+          { activs == null ? alert("You are deleting your activity!") : activs.filter(activ => !activ.hide).map((activ, index) => {           
             return (              
               <Col key={activ._id}>
                 <Card className="activsListCard">

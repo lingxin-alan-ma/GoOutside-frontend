@@ -209,7 +209,8 @@ const ActivsList = ({
           </Row>    
         </Form>
         <Row className="activRow">
-          { activs.map((activ) => {
+          { activs.filter(activ => !activ.hide).map((activ) => {
+          // { activs.map((activ) => {
             return (
               <Col key={activ._id}>
                 <Card className="activsListCard">
