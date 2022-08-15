@@ -67,7 +67,7 @@ const Favorites = ({
 
   return (
     <div className="App">
-      <Container className="favoritesContainer">
+      <Container>
         <div className="favoritesPanel">
           {
             favorites && favorites.length > 0 ?
@@ -78,7 +78,7 @@ const Favorites = ({
         </div>
         {
           activs.length > 0 ? (
-            <div style={{ width: "500px", margin: "1rem" }}>
+            <div className="favoritesItems">
               {activs.map((activ, i) => renderCard(activ, i))}
             </div>
           ) : null 

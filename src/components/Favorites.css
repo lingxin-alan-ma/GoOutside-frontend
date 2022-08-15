@@ -53,14 +53,16 @@
 }
 
 .favoritesPanel {
-  width: 33%;
-  min-height: 100vh;
   padding: 1rem;
   font-size: 2em;
   font-family: 'Dosis', sans-serif;
   font-weight: 600;
+  text-align: center;
+  margin: 0.5rem;
 }
 
-.favoritesContainer {
-  display: flex;
+.favoritesItem {
+  /* width: 100%; */
+  margin-left: auto;
+  margin-right: auto;
 }
