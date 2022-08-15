@@ -131,7 +131,6 @@ const ActivsList = ({
     return {innerWidth, innerHeight};
   }
 
-  
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -147,7 +146,8 @@ const ActivsList = ({
       <div >
         <SimpleImageSlider className="front-page-slider"
           width={windowSize.innerWidth}
-          height={600}
+          // height={600}
+          height={windowSize.innerWidth * 0.375}
           images={images}
           showBullets={true}
           showNavs={true}

@@ -13,7 +13,7 @@
   margin-top: -2.5em; */
   left: 50%;
   margin-left: -6.2em;
-  margin-top: -6.25em;
+  margin-top: -6.5em;
   -webkit-text-stroke-width: .5px;
   -webkit-text-stroke-color: darkgreen;
 }
@@ -27,11 +27,9 @@
   width: 30em;
   height: 3em;
   margin-left: -15em;
-  /* margin-top: 1em; */
+  margin-top: 5em;
   opacity: 0.8;
   display: flex;
-  /* border-radius: 30px;*/
-  /* border: 1px #000 solid;  */
 }
 
 .activRow {
@@ -86,3 +84,14 @@ div.poster {
 .heartEmpty {
   fill: white;
 }
+
+@media (min-width: 1000px) {
+  .center-title {
+    margin-top: -20rem;
+  }
+
+  .center-search {
+    margin-top: 1rem;
+  }
+}
+  

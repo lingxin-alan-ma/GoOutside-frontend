@@ -117,7 +117,7 @@ const Activ = ({
     <div>
       <Container>
         <Row >
-          <Col xs={12} sm={12} md={9} lg={6}>
+          <Col md={12} lg={6}>
             {/* <div className="poster">
               <Image
                 className="bigPicture"
@@ -158,22 +158,8 @@ const Activ = ({
                 ))}
               />
             </div>
-          
-            <div className="map">
-            <LoadScript
-              googleMapsApiKey = {API_KEY}
-            >
-              <GoogleMap
-                mapContainerClassName="map-container"
-                center={getCenter(activ.coord)}
-                zoom={12}
-              >
-                <Marker position={getCenter(activ.coord)}/>
-              </GoogleMap>
-            </LoadScript>
-            </div>
           </Col>
-          <Col>
+          <Col md lg>
             <Card>
               <Card.Header as="h5" style={{fontSize: '1.5em'}}>
                 {activ.name}
@@ -243,6 +229,29 @@ const Activ = ({
                   </Link> }
               </Card.Body>
             </Card>
+          </Col>
+        </Row>
+        <Row> 
+          <Col md={12} lg={6}>
+            <Card>
+              <Card.Body>
+                {/* <div className="map"> */}
+                  <LoadScript
+                    // googleMapsApiKey = {API_KEY}
+                  >
+                    <GoogleMap
+                      mapContainerClassName="map-container"
+                      center={getCenter(activ.coord)}
+                      zoom={12}
+                    >
+                      <Marker position={getCenter(activ.coord)}/>
+                    </GoogleMap>
+                  </LoadScript>
+                {/* </div> */}
+              </Card.Body>  
+            </Card>
+          </Col>
+          <Col md lg>
             <Card>
               <Card.Header as="h2">Reviews</Card.Header>
               <Card.Body>
@@ -279,26 +288,9 @@ const Activ = ({
                   )
                 })}     
               </Card.Body>
-              
             </Card>
-            
           </Col>
         </Row>
-        {/* <Row> */}
-          {/* <Col> */}
-            {/* <LoadScript
-              googleMapsApiKey = {API_KEY}
-            >
-              <GoogleMap
-                mapContainerClassName="map-container"
-                center={getCenter(activ.coord)}
-                zoom={12}
-              >
-                <Marker position={getCenter(activ.coord)}/>
-              </GoogleMap>
-            </LoadScript> */}
-          {/* </Col> */}
-        {/* </Row> */}
       </Container>
     </div>
   )
