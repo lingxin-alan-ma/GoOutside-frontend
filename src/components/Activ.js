@@ -150,7 +150,7 @@ const Activ = ({
                 <div style={{display: 'flex'}}>
                   <StarRatings
                     rating={
-                      activ.rating ? activ.rating[0] : 0
+                      activ.rating ? (activ.rating[0]/activ.rating[1]) : 0
                     }
                     starDimension="1.5rem"
                     starSpacing=".1rem"

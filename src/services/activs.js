@@ -39,7 +39,7 @@ class ActivDataService {
   }
 
   updateActivRating(data) {
-    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/rating`, data);
+    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/review/rating`, data);
   }
 
   deleteActivs(data) {

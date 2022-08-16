@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BsPencil, BsPenFill, BsTrash } from "react-icons/bs";
 import { BsPlusLg } from "react-icons/bs";
+import { BsStarFill } from 'react-icons/bs';
 
 import "react-slideshow-image/dist/styles.css";
 import "./ActivsList.css";
@@ -93,6 +94,16 @@ const MyActivs = ({
                   </Link>
                   <Card.Body className="activCardBody">
                     <Card.Title> {activ.name} </Card.Title>
+                    <div style={{display: 'flex'}}>
+                      <BsStarFill style={{fill: "orange"}}/>    
+                      <Card.Text style={{fontSize: '.75em', paddingLeft:'.3em'}}>
+                        {activ.rating ? (activ.rating[0]/ activ.rating[1]).toFixed(2): 0}
+                        {' '}
+                        {'('}
+                        {activ.rating ? activ.rating[1] : 0}
+                        {')'}
+                      </Card.Text>
+                    </div>
                     <Card.Text className="activTags">
                       {activ.tags}
                     </Card.Text>  
