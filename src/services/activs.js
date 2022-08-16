@@ -39,17 +39,16 @@ class ActivDataService {
   }
 
   updateActivRating(data) {
-    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, data);
+    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/rating`, data);
   }
 
   deleteActivs(data) {
-    return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/`, {data});  
+    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/delete`, {data});  
   }
 
   getActivsByUser(userId){
     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/userId/${userId}`);
   }
-
 }
 
 export default new ActivDataService();
