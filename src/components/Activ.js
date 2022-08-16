@@ -3,21 +3,17 @@ import ActivDataService from '../services/activs';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-// import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-// import { Slide } from 'react-slideshow-image';
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Rating } from 'react-simple-star-rating'
 import StarRatings from 'react-star-ratings';
 
-// import Geocode from 'react-geocode';
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 // import { FacebookIcon, TwitterIcon } from "react-share";
 // import FaFacebook from "react-icons/lib/fa/facebook";
@@ -88,18 +84,6 @@ const Activ = ({
         console.log(e);
       });
   }
-
-  // const getCoordinate = useCallback((address) => {
-  //   Geocode.fromAddress(address).then(
-  //     response => {
-  //       const { lat, lng } = response.results[0].geometry.location;
-  //       console.log(lat, lng);
-  //       return `{ lat: ${lat}, lng: ${lng} }`
-  //     },
-  //     error => {
-  //       console.error(error);
-  //     },);
-  // }, []);
 
   const getCenter = (coord) => {
     // console.log(coord);
@@ -202,6 +186,7 @@ const Activ = ({
                   {activ.tags}
                   {/* {activ.coord} */}
                 </Card.Text>  
+                
                 {/* <div>
                   <FacebookShareButton
                     url={"h"}
