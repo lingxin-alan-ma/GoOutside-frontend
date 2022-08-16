@@ -19,7 +19,7 @@ const MyActivs = ({
   user,
   favorites,
   addFavorite,
-  deleteFavorite
+  deleteFavorite,
 }) => {
   // useState to set state values
   const [activs, setActivs] = useState([]);
@@ -32,29 +32,28 @@ const MyActivs = ({
       .catch(e => {
         console.log(e);
       });
-  },[activs]);
+  },[user.googleId]);
 
-  const deleteActiv = (activ, index) => {
+  const deleteActiv = useCallback((activ, index) => {
     var data = {
       activ_id: activ._id,
       user_id: user.googleId,                    
       }
-      console.log(data);
-      ActivDataService.deleteActivs(data)
+    // console.log(data);
+    ActivDataService.deleteActivs(data)
       .then(response=>{
-          setActivs((activs) => {
-            activs.splice(index, 1)                          
-            })
-          })   
+        setActivs(response.data.activs);
+        console.log(activs);
+        console.log("delete success!");
+      }) 
       .catch(e=>{
         console.log(e);
       })
-
-  }
+  },[activs, user.googleId]);
 
   useEffect(() => {
     retrieveActivs();
-  },[activs]);
+  },[activs, retrieveActivs]);
 
   return (
     <div className="App">     
@@ -66,19 +65,20 @@ const MyActivs = ({
           </Button>                       
         </Link>  
         <Row className="activRow">
-          { activs == null ? alert("You are deleting your activity!") : activs.filter(activ => !activ.hide).map((activ, index) => {           
+          {/* { activs == null ? alert("You are deleting your activity!") : activs.filter(activ => !activ.hide).map((activ, index) => {     */}
+          { activs && activs.filter(activ => !activ.hide).map((activ, index) => {     
             return (              
               <Col key={activ._id}>
                 <Card className="activsListCard">
                   { user && (
-                      favorites.includes(activ._id) ?
-                      <BsHeartFill className="heart heartFill" onClick={() => {
-                        deleteFavorite(activ._id);
-                      }}/>
-                      :
-                      <BsHeart className="heart heartEmpty" onClick={() => {
-                        addFavorite(activ._id);
-                      }}/>
+                    favorites.includes(activ._id) ?
+                    <BsHeartFill className="heart heartFill" onClick={() => {
+                      deleteFavorite(activ._id);
+                    }}/>
+                    :
+                    <BsHeart className="heart heartEmpty" onClick={() => {
+                      addFavorite(activ._id);
+                    }}/>
                   ) }
                   <Link to={"/activs/"+activ._id}>
                     <Card.Img 
@@ -92,12 +92,12 @@ const MyActivs = ({
                       />
                   </Link>
                   <Card.Body className="activCardBody">
-                    <Card.Title> {activ.name}</Card.Title>
-                    <Card.Text className="activTags" style={{color: "blue"}}>
+                    <Card.Title> {activ.name} </Card.Title>
+                    <Card.Text className="activTags">
                       {activ.tags}
                     </Card.Text>  
                     <Card.Text>
-                      {activ.address[1]}
+                      {activ.address}
                     </Card.Text>
                     <Card.Text className="activDescription">
                       {activ.description}
@@ -119,10 +119,14 @@ const MyActivs = ({
                         </Col>
                         <Col>
                           <Button variant="danger" onClick = {()=>{
-                            deleteFavorite(activ._id);
-                            deleteActiv(activ, index);                          
-                          }
-                          }>
+                            let text = `Are you sure you want to delete activity ${activ.name}?`;
+                            if (window.confirm(text) == true) {
+                              deleteFavorite(activ._id);
+                              deleteActiv(activ, index);   
+                            } else {
+                              console.log('canceled');
+                            }                       
+                          }}>
                             Delete
                           <BsTrash style={{ marginLeft: "10", marginBottom: "3"}}/>
                           </Button>

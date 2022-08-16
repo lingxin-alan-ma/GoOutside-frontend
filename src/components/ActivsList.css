@@ -41,6 +41,9 @@
 
 .activTags {
   display: flex;
+  color: green!important;
+  font-family: "Architects Daughter", cursive;
+  font-size: 1.2em;
 }
 
 .activDescription {

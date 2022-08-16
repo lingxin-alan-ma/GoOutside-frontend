@@ -43,7 +43,7 @@ class ActivDataService {
   }
 
   deleteActivs(data) {
-    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/delete`, {data});  
+    return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/activs/delete`, data);  
   }
 
   getActivsByUser(userId){

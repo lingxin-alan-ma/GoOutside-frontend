@@ -248,7 +248,7 @@ const ActivsList = ({
                       </Card.Text>
                     </div>
                       
-                    <Card.Text className="activTags" style={{color: "green", fontFamily: "Architects Daughter", fontSize: "1.2em"}}>
+                    <Card.Text className="activTags">
                       {/* Tags: { activ.tags.map((tag, i) => {
                         return (
                           <option value={tag}

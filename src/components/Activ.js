@@ -174,7 +174,7 @@ const Activ = ({
                 <Card.Text>
                   {activ.description}
                 </Card.Text>
-                <Card.Text className="activTags" style={{color: "green", fontFamily: "Architects Daughter", fontSize: "1.2em", fontWeight: "600"}}>
+                <Card.Text className="activTags">
                   {/* Tags: { activ.tags.map((tag, i) => {
                     return (
                       <option value={tag}
