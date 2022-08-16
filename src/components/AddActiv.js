@@ -106,7 +106,8 @@ const AddActiv = ({ user }) => {
       ActivDataService.creatActiv(data)
       .then(response => {
         console.log(response);
-        navigate("/activs/")
+        navigate("/user");
+        // navigate("/activs/");
       })
       .catch(e => {
         console.log(e);
