@@ -150,7 +150,7 @@ const Activ = ({
                 <div style={{display: 'flex'}}>
                   <StarRatings
                     rating={
-                      activ.rating ? (activ.rating[0]/activ.rating[1]) : 0
+                      activ.rating && activ.rating[1] !== 0 ? (activ.rating[0]/activ.rating[1]) : 0
                     }
                     starDimension="1.5rem"
                     starSpacing=".1rem"
@@ -186,28 +186,6 @@ const Activ = ({
                   {activ.tags}
                   {/* {activ.coord} */}
                 </Card.Text>  
-                
-                {/* <div>
-                  <FacebookShareButton
-                    url={"h"}
-                    quote={""}
-                    hashtag={"#hashtag"}
-                    description={""}
-                    className="Demo__some-network__share-button"
-                  >
-                    <FacebookIcon size={32} round /> Facebookでshare
-                  </FacebookShareButton>
-                  <br />
-                  <TwitterShareButton
-                    title={"test"}
-                    url={""}
-                    hashtags={["hashtag1", "hashtag2"]}
-                  >
-                    <TwitterIcon size={32} round />
-                    Twitter share
-                  </TwitterShareButton>
-                </div> */}
-                
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
                     Add Review

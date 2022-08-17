@@ -97,7 +97,7 @@ const MyActivs = ({
                     <div style={{display: 'flex'}}>
                       <BsStarFill style={{fill: "orange"}}/>    
                       <Card.Text style={{fontSize: '.75em', paddingLeft:'.3em'}}>
-                        {activ.rating ? (activ.rating[0]/ activ.rating[1]).toFixed(2): 0}
+                        {activ.rating && activ.rating[1] !==0 ? (activ.rating[0] / activ.rating[1]).toFixed(2): 0}
                         {' '}
                         {'('}
                         {activ.rating ? activ.rating[1] : 0}
