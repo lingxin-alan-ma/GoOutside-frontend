@@ -8,11 +8,6 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function Login({ setUser }) {
 
-  // const onSuccess = (res) => {
-  //   console.log('Login Success: currentUSER:', res.profileObj);
-  //   setUser(res.profileObj)
-  // };
-
   const onSuccess = (res) => {
     var tokenData = jwt_decode(res.credential);
     var loginData = {
@@ -26,12 +21,6 @@ function Login({ setUser }) {
   const onFailure = (res) => {
     console.log('Login failed: res:', res);
   }
-
-  // userGoogleLogin({
-  //   onSuccess,
-  //   onFailure,
-  //   clientId,
-  // })
 
   return (
     <div>

@@ -60,11 +60,11 @@ const AddReview = ({ user }) => {
   const [rating, setRating] = useState(0) 
 
   const handleRating = (rate) => {
-    // setRating(rate)
-    // TODO
     var data = {
-      rating: rate 
+      rating: rate, 
+      activ_id: params.id
     }
+    // console.log(data)
     ActivDataService.updateActivRating(data)
       .then(response => {
         setRating(rate)
