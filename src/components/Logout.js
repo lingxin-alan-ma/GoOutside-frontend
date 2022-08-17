@@ -9,17 +9,12 @@ function Logout({ setUser }) {
   const onSuccess = () => {
     googleLogout();  // helper for logging out
     setUser(null);
-    // localStorage.setItem("login", null);  // clearing local storage
+    localStorage.setItem("login", null);  // clearing local storage
     console.log('Logout made successfully');
   };
   return (
     <div>
       <Button variant="danger" onClick={onSuccess}>Logout</Button>
-      {/* <GoogleLogout 
-        clientId={clientId}
-        buttonText="Logout"
-        onLogoutSuccess={onSuccess}
-      ></GoogleLogout> */}
     </div>
   );
 }
