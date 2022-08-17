@@ -36,6 +36,9 @@ body {
   margin: auto;
   font-size: 1.5rem;
 }
+.nav-link:hover{
+  color: lightgreen!important;
+}
 
 .ml-auto {
   font-family: 'Ruluko', cursive;
@@ -45,7 +48,7 @@ body {
 }
 
 .ml-auto:hover {
-  letter-spacing: .05rem;
+  /* letter-spacing: .05rem; */
   color: lightgreen!important;
 }
 
