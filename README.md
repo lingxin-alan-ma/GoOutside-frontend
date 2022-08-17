@@ -82,6 +82,36 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 ## Notes
 * Star ratings are arbitrary and for demo purpose only
   
+## #Iter3:
+### Heroku App frontend: https://gooutside-frontend.herokuapp.com
+### Heroku App backend: https://gooutsides.herokuapp.com 
+
+### Team member contribution:
+* Everyone contributed equally amount.
+* In addition to contributions made on last iter, everyone is engaged in overall debugging.
+* Each team member's concentrations are as follows:
+  * Cuiqi focused on implementing getcoordinate fuction and adjusting nav bar style.
+  * Lingxin focused on implementing website's responsiveness, handling delete activity exception, website overall styling, and updating readme. 
+  * Xiao focused on implementing add activity function in backend, fixing delete activity function in backend and fixing update rating problem.
+
+## Current Screenshots
+### Front page
+![frontpage 5](screenshots/frontpage_5.png) 
+![frontpage 6](screenshots/frontpage_6.png)
+### Favorites page
+![favorites 3](screenshots/favorites3.png)
+### Activity page
+![activity1](screenshots/activitypage1.png)
+![activity2](screenshots/activitypage2.png)
+### Add review and rating page
+![create review1](screenshots/createreview1.png)
+### My Activity page
+![my activity1](screenshots/myactivity1.png)
+### Add activity page
+![add activity1](screenshots/addactivity1.png)
+### Delete activity page
+![delete activity1](screenshots/deleteactivity1.png)
+
 
 #
 # Getting Started with Create React App
