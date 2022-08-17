@@ -33,10 +33,11 @@
 
 .card {
   margin-top: 15px;
+  /* height: 35rem; */
 }
 
 .activCardBody {
-  height: 18rem;
+  height: 20rem;
 }
 
 .activTags {
@@ -60,12 +61,18 @@
   width: 22em;
 }
 
-div.poster {
+/* div.poster {
   margin: 1em;
+} */
+
+.cardImage {
+  height: 15rem;
 }
 
 .smallPoster {
   user-select: none;
+  height: 100%;
+  object-fit: cover;
 }
 
 .heart {

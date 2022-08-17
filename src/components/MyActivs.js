@@ -81,17 +81,19 @@ const MyActivs = ({
                       addFavorite(activ._id);
                     }}/>
                   ) }
-                  <Link to={"/activs/"+activ._id}>
-                    <Card.Img 
-                      className="smallPoster" 
-                      src={activ.images[0]}
-                      alt={"poster not available"}
-                      onError={event => {
-                        event.target.src = noImageAvailable
-                        event.onerror = null
-                      }}
-                      />
-                  </Link>
+                  <div className="cardImage">
+                    <Link to={"/activs/"+activ._id}>
+                      <Card.Img 
+                        className="smallPoster" 
+                        src={activ.images[0]}
+                        alt={"poster not available"}
+                        onError={event => {
+                          event.target.src = noImageAvailable
+                          event.onerror = null
+                        }}
+                        />
+                    </Link>
+                  </div>
                   <Card.Body className="activCardBody">
                     <Card.Title> {activ.name} </Card.Title>
                     <div style={{display: 'flex'}}>

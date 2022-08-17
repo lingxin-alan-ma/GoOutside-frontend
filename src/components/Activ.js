@@ -11,23 +11,13 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-import { Rating } from 'react-simple-star-rating'
+// import { Rating } from 'react-simple-star-rating'
 import StarRatings from 'react-star-ratings';
-
-// import { FacebookShareButton, TwitterShareButton } from "react-share";
-// import { FacebookIcon, TwitterIcon } from "react-share";
-// import FaFacebook from "react-icons/lib/fa/facebook";
-// import { ShareButton } from "react-custom-share";
 
 import "react-slideshow-image/dist/styles.css";
 import "./Activ.css";
 
 const noImageAvailable = "../images/NoImageAvailable_james-wheeler-ZOA-cqKuJAA-unsplash.jpg";
-
-// const google = window.google;
-// var geocoder = new google.maps.Geocoder();
-
-// Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 const API_KEY=process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -184,7 +174,6 @@ const Activ = ({
                     )
                   })} */}
                   {activ.tags}
-                  {/* {activ.coord} */}
                 </Card.Text>  
                 { user &&
                   <Link to={"/activs/" + params.id + "/review"}>
@@ -200,7 +189,7 @@ const Activ = ({
               <Card.Body>
                 {/* <div className="map"> */}
                   <LoadScript
-                    // googleMapsApiKey = {API_KEY}
+                    googleMapsApiKey = {API_KEY}
                   >
                     <GoogleMap
                       mapContainerClassName="map-container"
