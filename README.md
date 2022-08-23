@@ -29,70 +29,9 @@ Provide a platform for users who enjoy outdoor activities to explore and review 
 *   upload activity page
 *   favorite page
 
-## #Iter1:
-### Heroku App frontend: https://gooutside-frontend.herokuapp.com
-### Heroku App backend: https://gooutsides.herokuapp.com 
-
-### Team member contribution:
-* Everyone contributed equally amount.
-* Everyone is involved in the wireframe design, transition from boilerplate, and actual app backend and frontend initial set up (structural) coding.
-* Each team member's concentrations are as follows:
-  * Cuiqi focuses on js files implementation in frontend, particual about add/edit activity funcions, and set up MongoDB atlas and Amazon S3. 
-  * Lingxin focuses on database entries, js files implementation in frontend, particular about activity page and overall frontend styling. 
-  * Xiao focuses on backend implementation,including all controllers and DAOs, and backend-frontend connection.
-
-## Current Screenshots
-### Front page
-![frontpage 1](screenshots/frontpage_1.png) 
-![frontpage 2](screenshots/frontpage_2.png)
-### Favorites page
-![favorites](screenshots/favorites.png)
-### Add new activity page
-![addnewactivity](screenshots/addnewactivity.png)
-
-## #Iter2:
-### Heroku App frontend: https://gooutside-frontend.herokuapp.com
-### Heroku App backend: https://gooutsides.herokuapp.com 
-
-### Team member contribution:
-* Everyone contributed equally amount.
-* In addition to contributions made on last iter, everyone is engaged in overall debugging.
-* Each team member's concentrations are as follows:
-  * Cuiqi focused on implementing activity editing, designing component showing coordinate array and image status, and Implementing getting coordinate and deleting images.
-  * Lingxin focused on implementing slideshow and maps with location display in activity page, displaying star rating on each activity, website layout with overall styling, and updating readme. 
-  * Xiao focused on implementing "My activities" page, including display of activities and delete activity function. Added getActivityByUserId and updateRating function in backend.
-
-## Current Screenshots
-### Front page
-![frontpage 3](screenshots/frontpage_3.png) 
-![frontpage 4](screenshots/frontpage_4.png)
-### Favorites page
-![favorites 2](screenshots/favorites2.png)
-### Activity page
-![activity](screenshots/activitypage.png)
-### Add review page
-![create review](screenshots/createreview.png)
-### My Activity page
-![my activity](screenshots/myactivity.png)
-### Add activity page
-![add activity](screenshots/addactivity.png)
-### Delete activity page
-![delete activity](screenshots/deleteactivity.png)
-
-## Notes
-* Star ratings are arbitrary and for demo purpose only
-  
 ## #Iter3:
 ### Heroku App frontend: https://gooutside-frontend.herokuapp.com
 ### Heroku App backend: https://gooutsides.herokuapp.com 
-
-### Team member contribution:
-* Everyone contributed equally amount.
-* In addition to contributions made on last iter, everyone is engaged in overall debugging.
-* Each team member's concentrations are as follows:
-  * Cuiqi focused on implementing getcoordinate fuction and adjusting nav bar style.
-  * Lingxin focused on implementing website's responsiveness, handling delete activity exception, website overall styling, and updating readme. 
-  * Xiao focused on implementing add activity function in backend, fixing delete activity function in backend and fixing update rating problem.
 
 ## Current Screenshots
 ### Front page
